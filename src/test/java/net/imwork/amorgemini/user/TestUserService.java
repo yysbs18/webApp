@@ -24,7 +24,7 @@ public class TestUserService {
     private UserService userService;
 
     @Test
-    public void save() {
+    public void save1() {
         UserEntity userEntity = new UserEntity();
         userEntity.setName("zzz");
         userEntity.setPassword("123456");
@@ -33,7 +33,7 @@ public class TestUserService {
     }
 
     @Test
-    public void findAll() {
+    public void findAll2() {
         LOGGER.info(JSONArray.fromObject(userService.findAll()));
     }
 }

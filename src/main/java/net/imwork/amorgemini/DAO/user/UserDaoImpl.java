@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String save(UserEntity entity) {
-        return null;
+        return String.valueOf(this.getCurrentSession().save(entity));
     }
 
     @Override

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String save(UserEntity entity) {
-        return null;
+        return userDao.save(entity);
     }
 
     @Override
