@@ -21,9 +21,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/showInfos")
-    public
     @ResponseBody
-    List<User> showUserInfos() {
+    public List<User> showUserInfos() {
         LOGGER.info("查询用户全部用户");
         List<User> userInfos = userService.findAll();
         return userInfos;
