@@ -1,6 +1,6 @@
 package net.imwork.amorgemini.service.user;
 
-import net.imwork.amorgemini.entity.UserEntity;
+import net.imwork.amorgemini.entity.User;
 
 import java.util.List;
 
@@ -8,17 +8,17 @@ import java.util.List;
  * Created by Administrator on 2017/2/25.
  */
 public interface UserService {
-    UserEntity load(String id);
+    User load(String id);
 
-    UserEntity get(String id);
+    User get(String id);
 
-    List<UserEntity> findAll();
+    List<User> findAll();
 
-    void persist(UserEntity entity);
+    void persist(User entity);
 
-    String save(UserEntity entity);
+    String save(User entity);
 
-    void saveOrUpdate(UserEntity entity);
+    void saveOrUpdate(User entity);
 
     void delete(String id);
 

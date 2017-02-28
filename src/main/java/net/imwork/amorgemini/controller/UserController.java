@@ -1,6 +1,6 @@
 package net.imwork.amorgemini.controller;
 
-import net.imwork.amorgemini.entity.UserEntity;
+import net.imwork.amorgemini.entity.User;
 import net.imwork.amorgemini.service.user.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class UserController {
     @RequestMapping("/showInfos")
     public
     @ResponseBody
-    List<UserEntity> showUserInfos() {
+    List<User> showUserInfos() {
         LOGGER.info("查询用户全部用户");
-        List<UserEntity> userInfos = userService.findAll();
+        List<User> userInfos = userService.findAll();
         return userInfos;
     }
 }

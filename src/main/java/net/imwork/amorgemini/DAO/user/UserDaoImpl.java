@@ -1,6 +1,6 @@
 package net.imwork.amorgemini.DAO.user;
 
-import net.imwork.amorgemini.entity.UserEntity;
+import net.imwork.amorgemini.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +21,33 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserEntity load(String id) {
-        return (UserEntity) this.getCurrentSession().load(UserEntity.class, id);
+    public User load(String id) {
+        return (User) this.getCurrentSession().load(User.class, id);
     }
 
     @Override
-    public UserEntity get(String id) {
+    public User get(String id) {
         return null;
     }
 
     @Override
-    public List<UserEntity> findAll() {
-        List<UserEntity> userList = this.getCurrentSession().createQuery("from UserEntity ").setCacheable(true).list();
+    public List<User> findAll() {
+        List<User> userList = this.getCurrentSession().createQuery("from User ").setCacheable(true).list();
         return userList;
     }
 
     @Override
-    public void persist(UserEntity entity) {
+    public void persist(User entity) {
 
     }
 
     @Override
-    public String save(UserEntity entity) {
+    public String save(User entity) {
         return String.valueOf(this.getCurrentSession().save(entity));
     }
 
     @Override
-    public void saveOrUpdate(UserEntity entity) {
+    public void saveOrUpdate(User entity) {
 
     }
 

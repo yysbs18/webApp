@@ -1,6 +1,6 @@
 package net.imwork.amorgemini.user;
 
-import net.imwork.amorgemini.entity.UserEntity;
+import net.imwork.amorgemini.entity.User;
 import net.imwork.amorgemini.service.user.UserService;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
@@ -25,10 +25,10 @@ public class TestUserService {
 
     @Test
     public void save1() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setName("zzz");
-        userEntity.setPassword("123456");
-        String id = userService.save(userEntity);
+        User user = new User();
+        user.setName("zzz");
+        user.setPassword("123456");
+        String id = userService.save(user);
         LOGGER.info(id);
     }
 
