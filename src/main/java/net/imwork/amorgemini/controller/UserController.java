@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/showInfos")
+    @RequestMapping("/showInfos.do")
     @ResponseBody
     public List<User> showUserInfos() {
         LOGGER.info("查询用户全部用户");
