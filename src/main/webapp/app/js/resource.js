@@ -25,7 +25,7 @@
     js.map(function (v) {
         resources += jsTemplate.replace('_resource_', v);
     });
-    resources += '<link rel="shortcut icon" href="../../../com-pc/img/favicon.ico" />';
+    resources += '<link rel="shortcut icon" href="../../app/img/favicon.ico" />';
     document.write(resources);
     window.app = {
         debug: dev
