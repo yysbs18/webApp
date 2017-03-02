@@ -52,18 +52,8 @@
             }
         }, [
             '../../views/login/login.js', '../../views/login/login.css'
-        ])._state('login.login', {
-            url: '/login/login',
-            views: {
-                'fixed': {
-                    controller: 'loginController',
-                    templateUrl: '../../views/login/login.html'
-                }
-            }
-        }, [
-            '../../views/login/login.js', '../../views/login/login.css'
         ]);
-        $urlRouterProvider.otherwise('/login/login');
+        $urlRouterProvider.otherwise('/login');
 
         webApp.run(['$rootScope', '$window', function ($rootScope, $window) {
             $rootScope.$on('ocLazyLoad.fileLoaded', function (e, file) {
