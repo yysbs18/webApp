@@ -3,7 +3,7 @@
  */
 (function (window, angular, app, undefined) {
     var webApp = window.webApp = angular.module('webApp', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngMessages', 'oc.lazyLoad',]);
-    webApp.config(['$httpProvider', '$controllerProvider', '$filterProvider', '$ocLazyLoadProvider', "$compileProvider", '$stateProvider', '$provide', '$urlRouterProvider', function ($httpProvider, $controllerProvider, $filterProvider, $ocLazyLoadProvider, $compileProvider, $stateProvider, $provide, $urlRouterProvider) {
+    webApp.config(['$httpProvider', '$controllerProvider', '$filterProvider', '$ocLazyLoadProvider', "$compileProvider", '$stateProvider', function ($httpProvider, $controllerProvider, $filterProvider, $ocLazyLoadProvider, $compileProvider, $stateProvider) {
         webApp.controllerRegister = $controllerProvider.register;
         webApp.filterRegister = $filterProvider.register;
         //lazy load config
@@ -42,18 +42,6 @@
             $stateProvider.state(name, stateConfig);
             return $stateProvider;
         };
-        $stateProvider._state('login', {
-            url: '/login',
-            views: {
-                'fixed': {
-                    controller: 'loginController',
-                    templateUrl: '../../views/login/login.html'
-                }
-            }
-        }, [
-            '../../views/login/login.js', '../../views/login/login.css'
-        ]);
-        $urlRouterProvider.otherwise('/login');
 
         webApp.run(['$rootScope', '$window', function ($rootScope, $window) {
             $rootScope.$on('ocLazyLoad.fileLoaded', function (e, file) {

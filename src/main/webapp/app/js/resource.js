@@ -21,7 +21,10 @@
     css.map(function (v) {
         resources += cssTemplate.replace('_resource_', node_module + (dev ? v : v.replace('css', 'min.css')));
     });
-
+    js = ['../../app/js/app.js', '../../app/js/states.js'];
+    js.map(function (v) {
+        resources += jsTemplate.replace('_resource_', v);
+    });
     resources += '<link rel="shortcut icon" href="../../../com-pc/img/favicon.ico" />';
     document.write(resources);
     window.app = {
