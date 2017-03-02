@@ -13,6 +13,16 @@
             }
         }, [
             '../../views/login/login.js', '../../views/login/login.css'
+        ])._state('management', {
+            url: '/management',
+            views: {
+                'fixed': {
+                    controller: 'loginController',
+                    templateUrl: '../../views/management/management.html'
+                }
+            }
+        }, [
+            '../../views/management/management.js', '../../views/management/management.css'
         ]);
         $urlRouterProvider.otherwise('/login');
     }]);
