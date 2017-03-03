@@ -13,6 +13,16 @@
             }
         }, [
             '../../views/login/login.js', '../../views/login/login.css'
+        ])._state('login.register', {
+            url: '/register',
+            views: {
+                'sub': {
+                    controller: 'registerController',
+                    templateUrl: '../../views/login/register.html'
+                }
+            }
+        }, [
+            '../../views/login/register.js', '../../views/login/register.css'
         ])._state('management', {
             url: '/management',
             views: {
