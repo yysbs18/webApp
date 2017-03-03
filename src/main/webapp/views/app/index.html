@@ -11,8 +11,9 @@
     <md-sidenav ui-view="menu" class="md-sidenav-left"
                 md-component-id="left"
                 md-disable-backdrop
-                md-is-locked-open="showMenu()"
+                md-is-locked-open="$mdMedia('gt-md')&&showMenu()"
                 md-whiteframe="3"></md-sidenav>
+    <!--md-disable-backdrop-->
     <div ui-view="content" flex></div>
 </div>
 <div ui-view="fixed"></div>

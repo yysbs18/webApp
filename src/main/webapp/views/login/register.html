@@ -1,3 +1,15 @@
-{{tt}}
-
-<a ui-sref="login">login</a>
+<form name="searchForm">
+    <div layout-gt-sm="column">
+        <md-input-container flex>
+            <label>姓名</label>
+            <input type="text" data-ng-model="tt"/>
+        </md-input-container>
+        <md-input-container flex>
+            <label>密碼</label>
+            <input type="text"/>
+        </md-input-container>
+    </div>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary">注冊</md-button>
+    </section>
+</form>

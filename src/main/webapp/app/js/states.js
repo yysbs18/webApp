@@ -28,10 +28,10 @@
             }
         }, [
             '../../views/login/login.js', '../../views/login/login.css'
-        ])._state('webApp.login.register', {
+        ])._state('webApp.register', {
             url: '/register',
             views: {
-                'sub': {
+                'content@': {
                     controller: 'registerController',
                     templateUrl: '../../views/login/register.html'
                 }
