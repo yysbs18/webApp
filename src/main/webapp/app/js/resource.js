@@ -25,6 +25,10 @@
     js.map(function (v) {
         resources += jsTemplate.replace('_resource_', v);
     });
+    css = ['../../app/css/app.css'];
+    css.map(function (v) {
+        resources += cssTemplate.replace('_resource_', v);
+    });
     resources += '<link rel="shortcut icon" href="../../app/img/home.ico" />';
     document.write(resources);
     window.app = {

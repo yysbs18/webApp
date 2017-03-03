@@ -3,17 +3,46 @@
  */
 (function (window, angular, app, webApp) {
     webApp.config(['$stateProvider', '$provide', '$urlRouterProvider', function ($stateProvider, $provide, $urlRouterProvider) {
-        $stateProvider._state('login', {
+        $stateProvider._state('webApp', {
+            url: '/webApp',
+            abstract: true,
+            views: {
+                'header': {
+                    controller: 'headerController',
+                    templateUrl: '../../views/app/header.html'
+                },
+                'menu': {
+                    controller: 'menuController',
+                    templateUrl: '../../views/app/menu.html'
+                }
+            }
+        }, [
+            '../../views/app/header.js', '../../views/app/header.css', '../../views/app/menu.js', '../../views/app/menu.css'
+        ])._state('webApp.index', {
+            url: '/index',
+            views: {
+                'header': {
+                    controller: 'headerController',
+                    templateUrl: '../../views/app/header.html'
+                },
+                'menu': {
+                    controller: 'menuController',
+                    templateUrl: '../../views/app/menu.html'
+                }
+            }
+        }, [
+            '../../views/app/header.js', '../../views/app/header.css', '../../views/app/menu.js', '../../views/app/menu.css'
+        ])._state('webApp.login', {
             url: '/login',
             views: {
-                'fixed': {
+                'content@': {
                     controller: 'loginController',
                     templateUrl: '../../views/login/login.html'
                 }
             }
         }, [
             '../../views/login/login.js', '../../views/login/login.css'
-        ])._state('login.register', {
+        ])._state('webApp.login.register', {
             url: '/register',
             views: {
                 'sub': {
@@ -23,10 +52,10 @@
             }
         }, [
             '../../views/login/register.js', '../../views/login/register.css'
-        ])._state('management', {
+        ])._state('webApp.management', {
             url: '/management',
             views: {
-                'fixed': {
+                'content@': {
                     controller: 'loginController',
                     templateUrl: '../../views/management/management.html'
                 }
@@ -34,6 +63,6 @@
         }, [
             '../../views/management/management.js', '../../views/management/management.css'
         ]);
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/webApp/index');
     }]);
 }(window, window.angular, window.app, window.webApp));
