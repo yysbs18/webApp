@@ -3,6 +3,15 @@
  */
 (function (window, angular, app, webApp) {
     webApp.controllerRegister('menuController', ['$scope', '$window', '$timeout', '$http', '$state', '$stateParams', function ($scope, $window, $timeout, $http, $state, $stateParams) {
-        $scope.ss = '姐姐';
+        var none = ['webApp.login'];
+        $scope.showMenu = function () {
+            var flag = true;
+            none.map(function (v) {
+                if ($state.is(v)) {
+                    flag = false;
+                }
+            });
+            return flag;
+        };
     }]);
 }(window, window.angular, window.app, window.webApp));

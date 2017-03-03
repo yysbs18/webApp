@@ -8,12 +8,11 @@
 <body ng-app="webApp" layout="column" class="webApp layout-column" ng-cloak aria-label="webApp">
 <md-toolbar ui-view="header" flex="10" layout="column"></md-toolbar>
 <div flex layout="row">
-    <md-sidenav ui-view="menu"
-                class="md-sidenav-left"
+    <md-sidenav ui-view="menu" class="md-sidenav-left"
                 md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-md')"
+                md-disable-backdrop
+                md-is-locked-open="showMenu()"
                 md-whiteframe="3"></md-sidenav>
-    <!--<div ui-view="menu" flex="15"></div>-->
     <div ui-view="content" flex></div>
 </div>
 <div ui-view="fixed"></div>

@@ -5,21 +5,7 @@
     webApp.config(['$stateProvider', '$provide', '$urlRouterProvider', function ($stateProvider, $provide, $urlRouterProvider) {
         $stateProvider._state('webApp', {
             url: '/webApp',
-            abstract: true,
-            views: {
-                'header': {
-                    controller: 'headerController',
-                    templateUrl: '../../views/app/header.html'
-                },
-                'menu': {
-                    controller: 'menuController',
-                    templateUrl: '../../views/app/menu.html'
-                }
-            }
-        }, [
-            '../../views/app/header.js', '../../views/app/header.css', '../../views/app/menu.js', '../../views/app/menu.css'
-        ])._state('webApp.index', {
-            url: '/index',
+            // abstract: true,
             views: {
                 'header': {
                     controller: 'headerController',
@@ -63,6 +49,6 @@
         }, [
             '../../views/management/management.js', '../../views/management/management.css'
         ]);
-        $urlRouterProvider.otherwise('/webApp/index');
+        $urlRouterProvider.otherwise('/webApp');
     }]);
 }(window, window.angular, window.app, window.webApp));
