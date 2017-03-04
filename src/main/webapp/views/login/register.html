@@ -1,15 +1,27 @@
-<form name="searchForm">
-    <div layout-gt-sm="column">
-        <md-input-container flex>
+<form name="searchForm" layout="column" layout-align="center center" layout-padding novalidate>
+    <!--<md-content>-->
+    <md-input-container class="md-block">
             <label>姓名</label>
-            <input type="text" data-ng-model="tt"/>
+        <input type="text" name="name" data-ng-model="name" required/>
+        <div ng-messages="searchForm.name.$error">
+            <div ng-message="required">請輸入姓名</div>
+        </div>
         </md-input-container>
-        <md-input-container flex>
+    <md-input-container class="md-block">
             <label>密碼</label>
-            <input type="text"/>
+        <input type="password" name="pwd" data-ng-model="pwd" required/>
+        <div ng-messages="searchForm.pwd.$error">
+            <div ng-message="required">請輸入密碼</div>
+        </div>
         </md-input-container>
-    </div>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-        <md-button class="md-raised md-primary">注冊</md-button>
-    </section>
+    <md-input-container class="md-block">
+        <label>確認密碼</label>
+        <input type="text" name="pwd2" data-ng-model="pwd2" ng-disabled="!pwd" required/>
+        <div ng-messages="searchForm.pwd2.$error">
+            <div ng-message="required">請確認密碼</div>
+        </div>
+    </md-input-container>
+    <md-button type="submit" class="md-raised md-primary">注冊</md-button>
+    <md-button class="md-primary" ui-sref="webApp.login">已有賬號</md-button>
+    <!--</md-content>-->
 </form>
