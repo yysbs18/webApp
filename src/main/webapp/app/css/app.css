@@ -1,7 +1,5 @@
-.webApp {
-
+.webApp .md-sidenav-left {
+  width: 150px;
 }
 
-.webApp md-sidenav {
-    width: 150px;
-}
+/*# sourceMappingURL=app.css.map */
