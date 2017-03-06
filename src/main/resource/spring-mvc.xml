@@ -48,18 +48,6 @@
         </property>
     </bean>
 
-    <mvc:resources mapping="/resource/**" location="../../main/resource/"/>
-    <!--<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoader" value="/WEB-INF/html/"/>
-    </bean>-->
-    <!-- Default ViewResolver对模型视图名称的解析即在模型视图名称添加前后缀 -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        <property name="cache" value="true"/>
-        <property name="prefix" value=""/>
-        <property name="suffix" value=".html"/>
-        <property name="exposeSpringMacroHelpers" value="true"/>
-    </bean>
-
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760"/>
     </bean>

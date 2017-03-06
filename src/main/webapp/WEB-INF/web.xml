@@ -30,21 +30,6 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <!-- openSessionInView配置 作用是延迟session关闭到view层 -->
-    <!--<filter>
-        <filter-name>openSessionInViewFilter</filter-name>
-        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-        <init-param>
-            <param-name>singleSession</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>openSessionInViewFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
-    </filter-mapping>-->
-    <!-- 防止spring内存溢出监听器 -->
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
@@ -64,14 +49,9 @@
 
     <servlet-mapping>
         <servlet-name>rest</servlet-name>
-        <!--<url-pattern>/</url-pattern>-->
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/*</url-pattern>
+        <!--<url-pattern>*.do</url-pattern>-->
     </servlet-mapping>
-
-    <!-- 配置session超时时间，单位分钟 -->
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
 
     <!--<error-page>
         <error-code>404</error-code>

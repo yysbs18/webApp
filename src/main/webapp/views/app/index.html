@@ -7,13 +7,13 @@
 </head>
 <body ng-app="webApp" layout="column" class="webApp" ng-cloak aria-label="webApp">
 <md-toolbar ui-view="header"></md-toolbar>
-<div layout="row">
+<div flex layout="row">
     <md-sidenav ui-view="menu" class="md-sidenav-left"
                 md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')&&showMenu()"
-                md-whiteframe="3" flex></md-sidenav>
+                md-whiteframe="3"></md-sidenav>
     <!--md-disable-backdrop-->
-    <div ui-view="content" flex></div>
+    <div ui-view="content" md-scroll-y layout="column" flex></div>
 </div>
 <div ui-view="fixed"></div>
 </body>
