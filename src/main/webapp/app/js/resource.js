@@ -31,6 +31,9 @@
     });
     resources += '<link rel="shortcut icon" href="../../app/img/home.ico" />';
     document.write(resources);
+    app.getUrl = function (path) {
+        return 'http://192.168.5.95:8080/webApp/' + path;
+    };
     window.app = {
         debug: dev
     };
