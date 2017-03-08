@@ -1,6 +1,7 @@
 package net.imwork.amorgemini.DAO;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -37,5 +38,8 @@ public abstract class GenericDaoImpl {
     }
     final protected void saveOrUpdate_(Object o){
         session_().saveOrUpdate(o);
+    }
+    final protected Query query_(String hql){
+       return session_().createQuery(hql);
     }
 }

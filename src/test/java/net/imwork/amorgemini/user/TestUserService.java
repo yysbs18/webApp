@@ -28,7 +28,7 @@ public class TestUserService {
         User user = new User();
         user.setName("zzz");
         user.setPassword("123456");
-        String id = userService.save(user);
+        Integer id = userService.save(user);
         LOGGER.info(id);
     }
 

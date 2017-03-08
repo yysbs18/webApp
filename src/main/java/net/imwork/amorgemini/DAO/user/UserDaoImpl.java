@@ -4,6 +4,7 @@ import net.imwork.amorgemini.DAO.GenericDaoImpl;
 import net.imwork.amorgemini.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,13 +28,14 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(Integer id) {
+    public User get(User id) {
+
         return null;
     }
 
     @Override
     public List<User> findAll() {
-        List<User> userList = this.getCurrentSession().createQuery("from User ").setCacheable(true).list();
+        List<User> userList = query_("from User ").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).setCacheable(true).list();
         return userList;
     }
 

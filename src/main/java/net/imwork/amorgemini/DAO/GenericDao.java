@@ -10,7 +10,7 @@ public interface GenericDao<T, PK extends Serializable> {
 
     T load(Integer id);
 
-    T get(PK id);
+    T get(T entity);
 
     List<T> findAll();
 
