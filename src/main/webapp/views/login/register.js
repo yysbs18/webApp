@@ -6,9 +6,18 @@
         $scope.tt = 'registerController';
         $http({
             method: 'get',
-            url: app.getUrl('/user/showInfos.do'),
+            url: app.getUrl('/user/showInfos'),
         }).then(function (res) {
-            $scope.list =res.data;
+            $scope.list = res.data;
+        }, function (rej) {
+
+        });
+        $http({
+            method: 'post',
+            url: app.getUrl('/user/saveUser'),
+            data: {id: 333, name: 'z就', password: +Math.round(Math.random() * 100000)}
+        }).then(function (res) {
+
         }, function (rej) {
 
         });

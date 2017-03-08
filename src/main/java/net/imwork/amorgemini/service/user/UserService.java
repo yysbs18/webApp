@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Administrator on 2017/2/25.
  */
 public interface UserService extends GenericService<User, String> {
-    User load(String id);
+    User load(Integer id);
 
     User get(String id);
 
@@ -19,7 +19,7 @@ public interface UserService extends GenericService<User, String> {
 
     String save(User entity);
 
-    void saveOrUpdate(User entity);
+    String saveOrUpdate(User entity);
 
     void delete(String id);
 

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface GenericDao<T, PK extends Serializable> {
 
-    T load(PK id);
+    T load(Integer id);
 
     T get(PK id);
 
@@ -18,7 +18,7 @@ public interface GenericDao<T, PK extends Serializable> {
 
     PK save(T entity);
 
-    void saveOrUpdate(T entity);
+    PK saveOrUpdate(T entity);
 
     void delete(PK id);
 

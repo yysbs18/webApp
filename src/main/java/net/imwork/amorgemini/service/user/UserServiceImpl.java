@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User load(String id) {
+    public User load(Integer id) {
         return userDao.load(id);
     }
 
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveOrUpdate(User entity) {
-
+    public String saveOrUpdate(User entity) {
+        return userDao.saveOrUpdate(entity);
     }
 
     @Override

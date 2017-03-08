@@ -7,7 +7,7 @@ import java.util.List;
  * Created by lvbr on 2017/3/8.
  */
 public interface GenericService<T, PK extends Serializable> {
-    T load(PK id);
+    T load(Integer id);
 
     T get(PK id);
 
@@ -17,7 +17,7 @@ public interface GenericService<T, PK extends Serializable> {
 
     PK save(T entity);
 
-    void saveOrUpdate(T entity);
+    String saveOrUpdate(T entity);
 
     void delete(PK id);
 

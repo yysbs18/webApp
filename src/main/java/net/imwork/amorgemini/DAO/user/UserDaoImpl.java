@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User load(String id) {
+    public User load(Integer id) {
         return (User) this.getCurrentSession().load(User.class, id);
     }
 
@@ -47,8 +47,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void saveOrUpdate(User entity) {
-
+    public String saveOrUpdate(User entity) {
+        User u = this.load(entity.getId());
+        u.setName(entity.getName());
+        u.setPassword(entity.getPassword());
+        this.getCurrentSession().update(u);
+        return String.valueOf(u.getId());
     }
 
     @Override
