@@ -8,20 +8,20 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/2/25.
  */
-public interface UserService extends GenericService<User, String> {
+public interface UserService extends GenericService<User, Integer> {
     User load(Integer id);
 
-    User get(String id);
+    User get(Integer id);
 
     List<User> findAll();
 
     void persist(User entity);
 
-    String save(User entity);
+    Integer save(User entity);
 
-    String saveOrUpdate(User entity);
+    Integer saveOrUpdate(User entity);
 
-    void delete(String id);
+    void delete(Integer id);
 
     void flush();
 }

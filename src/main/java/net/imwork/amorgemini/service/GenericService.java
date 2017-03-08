@@ -17,7 +17,7 @@ public interface GenericService<T, PK extends Serializable> {
 
     PK save(T entity);
 
-    String saveOrUpdate(T entity);
+    Integer saveOrUpdate(T entity);
 
     void delete(PK id);
 

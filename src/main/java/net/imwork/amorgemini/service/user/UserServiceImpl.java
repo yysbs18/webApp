@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(String id) {
+    public User get(Integer id) {
         return null;
     }
 
@@ -36,17 +36,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String save(User entity) {
+    public Integer save(User entity) {
         return userDao.save(entity);
     }
 
     @Override
-    public String saveOrUpdate(User entity) {
+    public Integer saveOrUpdate(User entity) {
         return userDao.saveOrUpdate(entity);
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
 
     }
 

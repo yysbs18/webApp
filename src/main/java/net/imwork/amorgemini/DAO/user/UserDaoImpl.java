@@ -1,5 +1,6 @@
 package net.imwork.amorgemini.DAO.user;
 
+import net.imwork.amorgemini.DAO.GenericDaoImpl;
 import net.imwork.amorgemini.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2017/2/25.
  */
 @Repository("userDao")
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -22,11 +23,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User load(Integer id) {
-        return (User) this.getCurrentSession().load(User.class, id);
+        return load_(User.class, id);
     }
 
     @Override
-    public User get(String id) {
+    public User get(Integer id) {
         return null;
     }
 
@@ -42,21 +43,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String save(User entity) {
-        return String.valueOf(this.getCurrentSession().save(entity));
+    public Integer save(User entity) {
+        save_(entity);
+        return entity.getId();
     }
 
     @Override
-    public String saveOrUpdate(User entity) {
+    public Integer saveOrUpdate(User entity) {
         User u = this.load(entity.getId());
         u.setName(entity.getName());
         u.setPassword(entity.getPassword());
         this.getCurrentSession().update(u);
-        return String.valueOf(u.getId());
+        return u.getId();
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
 
     }
 

@@ -26,7 +26,6 @@ public class UserController extends GenericController {
     @ResponseBody
     public Map<String, Object> showUserInfos() {
         LOGGER.info("查询用户全部用户");
-        jsonResult.put("success", true);
         jsonResult.put("data", userService.findAll());
         return jsonResult;
     }
@@ -34,7 +33,6 @@ public class UserController extends GenericController {
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> saveUser(@RequestBody User user) throws Exception {
-        jsonResult.put("success", true);
         jsonResult.put("data", userService.saveOrUpdate(user));
         return jsonResult;
     }
