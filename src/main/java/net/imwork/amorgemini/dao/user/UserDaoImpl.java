@@ -1,4 +1,4 @@
-package net.imwork.amorgemini.DAO.user;
+package net.imwork.amorgemini.dao.user;
 
 import net.imwork.amorgemini.entity.User;
 import org.hibernate.Session;
