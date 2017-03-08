@@ -1,6 +1,6 @@
 package net.imwork.amorgemini.service.user;
 
-import net.imwork.amorgemini.dao.user.UserDao;
+import net.imwork.amorgemini.DAO.user.UserDao;
 import net.imwork.amorgemini.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

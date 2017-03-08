@@ -1,6 +1,6 @@
-package net.imwork.amorgemini.dao.user;
+package net.imwork.amorgemini.DAO.user;
 
-import net.imwork.amorgemini.dao.GenericDao;
+import net.imwork.amorgemini.DAO.GenericDao;
 import net.imwork.amorgemini.entity.User;
 
 /**
