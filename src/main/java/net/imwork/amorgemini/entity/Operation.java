@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 public class Operation {
@@ -22,17 +22,17 @@ public class Operation {
     private Collection<PermissionOperationRelation> permissionOperationRelationsByOperationId;
 
     @Id
-    @Column(name = "operation_id", nullable = false)
-    public Integer  getOperationId() {
+    @Column(name = "operation_id")
+    public Integer getOperationId() {
         return operationId;
     }
 
-    public void setOperationId(Integer  operationId) {
+    public void setOperationId(Integer operationId) {
         this.operationId = operationId;
     }
 
     @Basic
-    @Column(name = "operation_name", nullable = false, length = 32)
+    @Column(name = "operation_name")
     public String getOperationName() {
         return operationName;
     }
@@ -42,7 +42,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "operation_code", nullable = false, length = 32)
+    @Column(name = "operation_code")
     public String getOperationCode() {
         return operationCode;
     }
@@ -52,7 +52,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "intercept_prefix", nullable = true, length = 64)
+    @Column(name = "intercept_prefix")
     public String getInterceptPrefix() {
         return interceptPrefix;
     }
@@ -62,7 +62,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "operation_fid", nullable = true)
+    @Column(name = "operation_fid")
     public Integer getOperationFid() {
         return operationFid;
     }
@@ -72,7 +72,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -82,7 +82,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -92,7 +92,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -102,7 +102,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -112,7 +112,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -128,7 +128,8 @@ public class Operation {
 
         Operation operation = (Operation) o;
 
-        if (operationId != operation.operationId) return false;
+        if (operationId != null ? !operationId.equals(operation.operationId) : operation.operationId != null)
+            return false;
         if (operationName != null ? !operationName.equals(operation.operationName) : operation.operationName != null)
             return false;
         if (operationCode != null ? !operationCode.equals(operation.operationCode) : operation.operationCode != null)
@@ -148,7 +149,7 @@ public class Operation {
 
     @Override
     public int hashCode() {
-        int result = operationId;
+        int result = operationId != null ? operationId.hashCode() : 0;
         result = 31 * result + (operationName != null ? operationName.hashCode() : 0);
         result = 31 * result + (operationCode != null ? operationCode.hashCode() : 0);
         result = 31 * result + (interceptPrefix != null ? interceptPrefix.hashCode() : 0);

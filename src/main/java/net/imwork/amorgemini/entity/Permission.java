@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 public class Permission {
@@ -21,17 +21,17 @@ public class Permission {
     private Collection<UserRolePermissionRalation> userRolePermissionRalationsByPermissionId;
 
     @Id
-    @Column(name = "permission_id", nullable = false)
-    public Integer  getPermissionId() {
+    @Column(name = "permission_id")
+    public Integer getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(Integer  permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
 
     @Basic
-    @Column(name = "permission_type", nullable = false, length = 32)
+    @Column(name = "permission_type")
     public String getPermissionType() {
         return permissionType;
     }
@@ -41,7 +41,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -51,7 +51,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -61,7 +61,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -71,7 +71,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -81,7 +81,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -97,7 +97,7 @@ public class Permission {
 
         Permission that = (Permission) o;
 
-        if (permissionId != that.permissionId) return false;
+        if (permissionId != null ? !permissionId.equals(that.permissionId) : that.permissionId != null) return false;
         if (permissionType != null ? !permissionType.equals(that.permissionType) : that.permissionType != null)
             return false;
         if (creataUserId != null ? !creataUserId.equals(that.creataUserId) : that.creataUserId != null) return false;
@@ -109,7 +109,7 @@ public class Permission {
 
     @Override
     public int hashCode() {
-        int result = permissionId;
+        int result = permissionId != null ? permissionId.hashCode() : 0;
         result = 31 * result + (permissionType != null ? permissionType.hashCode() : 0);
         result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);

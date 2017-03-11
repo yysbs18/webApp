@@ -3,11 +3,7 @@ package net.imwork.amorgemini.dao.user;
 import net.imwork.amorgemini.dao.GenericDaoImpl;
 import net.imwork.amorgemini.entity.User;
 import net.imwork.amorgemini.util.UUIDUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,14 +12,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/2/25.
  */
-@Repository("userDao")
-public class UserDaoImpl extends GenericDaoImpl implements UserDao {
-    @Autowired
-    private SessionFactory sessionFactory;
 
-    private Session getCurrentSession() {
-        return this.sessionFactory.getCurrentSession();
-    }
+public class UserDaoImpl extends GenericDaoImpl implements UserDao {
 
     @Override
     public User load(Integer id) {
@@ -63,7 +53,7 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
         u.setUsername(entity.getUsername());
         u.setEmail(entity.getEmail());
         u.setPassword(entity.getPassword());
-        this.getCurrentSession().update(u);
+        update_(u);
         return u.getUserId();
     }
 

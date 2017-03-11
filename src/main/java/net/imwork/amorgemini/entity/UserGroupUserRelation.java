@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 @Table(name = "user_group_user_relation", schema = "webapp", catalog = "")
@@ -18,7 +18,7 @@ public class UserGroupUserRelation {
     private User userByUserId;
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -28,7 +28,7 @@ public class UserGroupUserRelation {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -38,7 +38,7 @@ public class UserGroupUserRelation {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -48,7 +48,7 @@ public class UserGroupUserRelation {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -58,7 +58,7 @@ public class UserGroupUserRelation {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }

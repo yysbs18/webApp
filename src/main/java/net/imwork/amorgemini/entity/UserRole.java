@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 @Table(name = "user_role", schema = "webapp", catalog = "")
@@ -22,17 +22,17 @@ public class UserRole {
     private Collection<UserRoleRelation> userRoleRelationsByUserRoleId;
 
     @Id
-    @Column(name = "user_role_id", nullable = false)
-    public Integer  getUserRoleId() {
+    @Column(name = "user_role_id")
+    public Integer getUserRoleId() {
         return userRoleId;
     }
 
-    public void setUserRoleId(Integer  userRoleId) {
+    public void setUserRoleId(Integer userRoleId) {
         this.userRoleId = userRoleId;
     }
 
     @Basic
-    @Column(name = "user_role_name", nullable = false, length = 32)
+    @Column(name = "user_role_name")
     public String getUserRoleName() {
         return userRoleName;
     }
@@ -42,7 +42,7 @@ public class UserRole {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -52,7 +52,7 @@ public class UserRole {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -62,7 +62,7 @@ public class UserRole {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -72,7 +72,7 @@ public class UserRole {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -82,7 +82,7 @@ public class UserRole {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -98,7 +98,7 @@ public class UserRole {
 
         UserRole userRole = (UserRole) o;
 
-        if (userRoleId != userRole.userRoleId) return false;
+        if (userRoleId != null ? !userRoleId.equals(userRole.userRoleId) : userRole.userRoleId != null) return false;
         if (userRoleName != null ? !userRoleName.equals(userRole.userRoleName) : userRole.userRoleName != null)
             return false;
         if (creataUserId != null ? !creataUserId.equals(userRole.creataUserId) : userRole.creataUserId != null)
@@ -112,7 +112,7 @@ public class UserRole {
 
     @Override
     public int hashCode() {
-        int result = userRoleId;
+        int result = userRoleId != null ? userRoleId.hashCode() : 0;
         result = 31 * result + (userRoleName != null ? userRoleName.hashCode() : 0);
         result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);

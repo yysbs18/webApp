@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 @Table(name = "user_group", schema = "webapp", catalog = "")
@@ -22,17 +22,17 @@ public class UserGroup {
     private Collection<UserGroupUserRoleRelation> userGroupUserRoleRelationsByUserGroupId;
 
     @Id
-    @Column(name = "user_group_id", nullable = false)
-    public Integer  getUserGroupId() {
+    @Column(name = "user_group_id")
+    public Integer getUserGroupId() {
         return userGroupId;
     }
 
-    public void setUserGroupId(Integer  userGroupId) {
+    public void setUserGroupId(Integer userGroupId) {
         this.userGroupId = userGroupId;
     }
 
     @Basic
-    @Column(name = "user_group_name", nullable = false, length = 32)
+    @Column(name = "user_group_name")
     public String getUserGroupName() {
         return userGroupName;
     }
@@ -42,7 +42,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "user_group_fid", nullable = true)
+    @Column(name = "user_group_fid")
     public Integer getUserGroupFid() {
         return userGroupFid;
     }
@@ -52,7 +52,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -62,7 +62,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -72,7 +72,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -82,7 +82,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -92,7 +92,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -108,7 +108,8 @@ public class UserGroup {
 
         UserGroup userGroup = (UserGroup) o;
 
-        if (userGroupId != userGroup.userGroupId) return false;
+        if (userGroupId != null ? !userGroupId.equals(userGroup.userGroupId) : userGroup.userGroupId != null)
+            return false;
         if (userGroupName != null ? !userGroupName.equals(userGroup.userGroupName) : userGroup.userGroupName != null)
             return false;
         if (userGroupFid != null ? !userGroupFid.equals(userGroup.userGroupFid) : userGroup.userGroupFid != null)
@@ -124,7 +125,7 @@ public class UserGroup {
 
     @Override
     public int hashCode() {
-        int result = userGroupId;
+        int result = userGroupId != null ? userGroupId.hashCode() : 0;
         result = 31 * result + (userGroupName != null ? userGroupName.hashCode() : 0);
         result = 31 * result + (userGroupFid != null ? userGroupFid.hashCode() : 0);
         result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);

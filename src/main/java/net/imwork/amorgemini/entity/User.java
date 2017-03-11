@@ -9,12 +9,12 @@ import java.util.Collection;
  */
 @Entity
 public class User {
-    private String password;
     private Integer userId;
     private String uuid;
     private String email;
     private String username;
-    private Byte sex;
+    private String password;
+    private Boolean sex;
     private String token;
     private Integer creataUserId;
     private Timestamp creataTime;
@@ -26,28 +26,18 @@ public class User {
     private Collection<UserGroupUserRelation> userGroupUserRelationsByUserId;
     private Collection<UserRoleRelation> userRoleRelationsByUserId;
 
-    @Basic
-    @Column(name = "password", nullable = false, length = 32)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Id
-    @Column(name = "user_id", nullable = false)
-    public Integer  getUserId() {
+    @Column(name = "user_id")
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer  userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
     @Basic
-    @Column(name = "uuid", nullable = false, length = 32)
+    @Column(name = "uuid")
     public String getUuid() {
         return uuid;
     }
@@ -57,7 +47,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 64)
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -67,7 +57,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = false, length = 32)
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -77,17 +67,27 @@ public class User {
     }
 
     @Basic
-    @Column(name = "sex", nullable = true)
-    public Byte getSex() {
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
+    @Column(name = "sex")
+    public Boolean getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Boolean sex) {
         this.sex = sex;
     }
 
     @Basic
-    @Column(name = "token", nullable = false, length = 32)
+    @Column(name = "token")
     public String getToken() {
         return token;
     }
@@ -97,7 +97,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -107,7 +107,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -117,7 +117,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -127,7 +127,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -137,7 +137,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -153,11 +153,11 @@ public class User {
 
         User user = (User) o;
 
-        if (userId != user.userId) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
         if (uuid != null ? !uuid.equals(user.uuid) : user.uuid != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
         if (token != null ? !token.equals(user.token) : user.token != null) return false;
         if (creataUserId != null ? !creataUserId.equals(user.creataUserId) : user.creataUserId != null) return false;
@@ -169,11 +169,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = password != null ? password.hashCode() : 0;
-        result = 31 * result + userId;
+        int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (uuid != null ? uuid.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
         result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);

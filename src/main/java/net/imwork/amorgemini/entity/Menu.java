@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/11.
  */
 @Entity
 public class Menu {
@@ -22,17 +22,17 @@ public class Menu {
     private Collection<MenuPermissionRelation> menuPermissionRelationsByMenuId;
 
     @Id
-    @Column(name = "menu_id", nullable = false)
-    public Integer  getMenuId() {
+    @Column(name = "menu_id")
+    public Integer getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(Integer  menuId) {
+    public void setMenuId(Integer menuId) {
         this.menuId = menuId;
     }
 
     @Basic
-    @Column(name = "menu_name", nullable = false, length = 32)
+    @Column(name = "menu_name")
     public String getMenuName() {
         return menuName;
     }
@@ -42,7 +42,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "menu_url", nullable = false, length = 64)
+    @Column(name = "menu_url")
     public String getMenuUrl() {
         return menuUrl;
     }
@@ -52,7 +52,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "menu_fid", nullable = true)
+    @Column(name = "menu_fid")
     public Integer getMenuFid() {
         return menuFid;
     }
@@ -62,7 +62,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "sort", nullable = true)
+    @Column(name = "sort")
     public Integer getSort() {
         return sort;
     }
@@ -72,7 +72,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -82,7 +82,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -92,7 +92,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -102,7 +102,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -112,7 +112,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -128,7 +128,7 @@ public class Menu {
 
         Menu menu = (Menu) o;
 
-        if (menuId != menu.menuId) return false;
+        if (menuId != null ? !menuId.equals(menu.menuId) : menu.menuId != null) return false;
         if (menuName != null ? !menuName.equals(menu.menuName) : menu.menuName != null) return false;
         if (menuUrl != null ? !menuUrl.equals(menu.menuUrl) : menu.menuUrl != null) return false;
         if (menuFid != null ? !menuFid.equals(menu.menuFid) : menu.menuFid != null) return false;
@@ -142,7 +142,7 @@ public class Menu {
 
     @Override
     public int hashCode() {
-        int result = menuId;
+        int result = menuId != null ? menuId.hashCode() : 0;
         result = 31 * result + (menuName != null ? menuName.hashCode() : 0);
         result = 31 * result + (menuUrl != null ? menuUrl.hashCode() : 0);
         result = 31 * result + (menuFid != null ? menuFid.hashCode() : 0);
