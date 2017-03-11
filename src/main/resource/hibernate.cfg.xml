@@ -11,6 +11,8 @@
       <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
       <!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，webApp是数据库名-->
       <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/webApp</property>
+      <property name="hibernate.connection.user">lvbr</property>
+      <property name="hibernate.connection.password">962464</property>
       <!--连接数据库是用户名-->
        <!--连接数据库是密码-->
        <!--数据库连接池的大小-->
