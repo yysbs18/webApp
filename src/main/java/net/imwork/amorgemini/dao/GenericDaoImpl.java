@@ -1,4 +1,4 @@
-package net.imwork.amorgemini.DAO;
+package net.imwork.amorgemini.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;

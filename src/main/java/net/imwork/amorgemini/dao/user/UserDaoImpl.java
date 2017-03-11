@@ -1,7 +1,8 @@
-package net.imwork.amorgemini.DAO.user;
+package net.imwork.amorgemini.dao.user;
 
-import net.imwork.amorgemini.DAO.GenericDaoImpl;
+import net.imwork.amorgemini.dao.GenericDaoImpl;
 import net.imwork.amorgemini.entity.User;
+import net.imwork.amorgemini.util.UUIDUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -48,10 +49,10 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
 
     @Override
     public Integer save(User entity) {
-        entity.setUuid("");
+        entity.setUuid(UUIDUtil.uuid());
         entity.setModifyUserId(entity.getUserId());
         entity.setModifyTime((Timestamp) new Date());
-//        entity.setFlag();
+        entity.setFlag(true);
         save_(entity);
         return entity.getUserId();
     }
