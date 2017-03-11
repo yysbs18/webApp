@@ -30,7 +30,7 @@ public class TestUserService extends GenericController{
     @Test
     public void save1() {
         User user = new User();
-        user.setName("zzz");
+        user.setUsername("zzz");
         user.setPassword("123456");
         jsonResult.put("id", userService.save(user));
         LOGGER.info(jsonResult);
@@ -38,7 +38,7 @@ public class TestUserService extends GenericController{
     @Test
     public void get2() {
         User user = new User();
-        user.setName("zzz");
+        user.setUsername("zzz");
         user.setPassword("123456");
         jsonResult.put("isExist", userService.get(user));
         LOGGER.info(jsonResult);

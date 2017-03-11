@@ -10,24 +10,24 @@ import java.util.Collection;
 @Entity
 @Table(name = "user_group", schema = "webapp", catalog = "")
 public class UserGroup {
-    private int userGroupId;
+    private Integer userGroupId;
     private String userGroupName;
     private Integer userGroupFid;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private Collection<UserGroupUserRelation> userGroupUserRelationsByUserGroupId;
     private Collection<UserGroupUserRoleRelation> userGroupUserRoleRelationsByUserGroupId;
 
     @Id
     @Column(name = "user_group_id", nullable = false)
-    public int getUserGroupId() {
+    public Integer  getUserGroupId() {
         return userGroupId;
     }
 
-    public void setUserGroupId(int userGroupId) {
+    public void setUserGroupId(Integer  userGroupId) {
         this.userGroupId = userGroupId;
     }
 
@@ -93,11 +93,11 @@ public class UserGroup {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

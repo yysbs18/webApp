@@ -10,7 +10,7 @@ import java.util.Collection;
 @Entity
 public class User {
     private String password;
-    private int userId;
+    private Integer userId;
     private String uuid;
     private String email;
     private String username;
@@ -20,7 +20,7 @@ public class User {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private User userByModifyUserId;
     private Collection<User> usersByUserId;
     private Collection<UserGroupUserRelation> userGroupUserRelationsByUserId;
@@ -38,11 +38,11 @@ public class User {
 
     @Id
     @Column(name = "user_id", nullable = false)
-    public int getUserId() {
+    public Integer  getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer  userId) {
         this.userId = userId;
     }
 
@@ -138,11 +138,11 @@ public class User {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

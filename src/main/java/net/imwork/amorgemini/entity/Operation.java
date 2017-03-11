@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 public class Operation {
-    private int operationId;
+    private Integer operationId;
     private String operationName;
     private String operationCode;
     private String interceptPrefix;
@@ -18,16 +18,16 @@ public class Operation {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private Collection<PermissionOperationRelation> permissionOperationRelationsByOperationId;
 
     @Id
     @Column(name = "operation_id", nullable = false)
-    public int getOperationId() {
+    public Integer  getOperationId() {
         return operationId;
     }
 
-    public void setOperationId(int operationId) {
+    public void setOperationId(Integer  operationId) {
         this.operationId = operationId;
     }
 
@@ -113,11 +113,11 @@ public class Operation {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

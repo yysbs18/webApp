@@ -1,19 +1,26 @@
 <form name="searchForm" layout-align="center center" layout-padding novalidate>
     <!--<md-content>-->
     <md-input-container class="md-block">
-        <label>賬號</label>
-        <input type="text" name="name" data-ng-model="name" required/>
-        <div ng-messages="searchForm.name.$error">
-            <div ng-message="required">請輸入賬號</div>
+        <label>用户名</label>
+        <input type="text" name="username" data-ng-model="username" required/>
+        <div ng-messages="searchForm.username.$error">
+            <div ng-message="required">请输入用户名</div>
         </div>
-        </md-input-container>
+    </md-input-container>
     <md-input-container class="md-block">
-            <label>密碼</label>
-        <input type="password" name="pwd" data-ng-model="pwd" required/>
-        <div ng-messages="searchForm.pwd.$error">
-            <div ng-message="required">請輸入密碼</div>
+        <label>邮箱</label>
+        <input type="email" name="email" data-ng-model="email" required/>
+        <div ng-messages="searchForm.email.$error">
+            <div ng-message="required">请输入邮箱</div>
         </div>
-        </md-input-container>
+    </md-input-container>
+    <md-input-container class="md-block">
+            <label>密码</label>
+        <input type="password" name="password" data-ng-model="password" required/>
+        <div ng-messages="searchForm.password.$error">
+            <div ng-message="required">请输入密码</div>
+        </div>
+    </md-input-container>
     <md-input-container class="md-block">
         <label>確認密碼</label>
         <input type="text" name="pwd2" data-ng-model="pwd2" ng-disabled="!pwd" required/>
@@ -21,8 +28,7 @@
             <div ng-message="required">請確認密碼</div>
             <div ng-message="pwd!=pwd2">密码不一致</div>
         </div>
-    </md-input-container>
-    <md-button type="submit" class="md-raised md-primary">注冊</md-button>
-    <md-button class="md-primary" ui-sref="webApp.login">已有賬號</md-button>
-    <!--</md-content>-->
+</md-input-container>
+    <md-button type="submit" class="md-raised md-primary">注册</md-button>
+    <md-button class="md-primary" ui-sref="webApp.login">已有账号</md-button>
 </form>

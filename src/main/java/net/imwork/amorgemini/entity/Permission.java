@@ -9,24 +9,24 @@ import java.util.Collection;
  */
 @Entity
 public class Permission {
-    private int permissionId;
+    private Integer permissionId;
     private String permissionType;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private Collection<MenuPermissionRelation> menuPermissionRelationsByPermissionId;
     private Collection<PermissionOperationRelation> permissionOperationRelationsByPermissionId;
     private Collection<UserRolePermissionRalation> userRolePermissionRalationsByPermissionId;
 
     @Id
     @Column(name = "permission_id", nullable = false)
-    public int getPermissionId() {
+    public Integer  getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(int permissionId) {
+    public void setPermissionId(Integer  permissionId) {
         this.permissionId = permissionId;
     }
 
@@ -82,11 +82,11 @@ public class Permission {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

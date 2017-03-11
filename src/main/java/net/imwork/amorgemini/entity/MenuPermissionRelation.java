@@ -14,7 +14,7 @@ public class MenuPermissionRelation {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private Menu menuByMenuId;
     private Permission permissionByPermissionId;
 
@@ -70,11 +70,11 @@ public class MenuPermissionRelation {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

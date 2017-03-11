@@ -8,6 +8,8 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +31,7 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
 
     @Override
     public User get(User _user) {
-        User user = (User) query_("from User u where u.name=:n and u.password=:p").setParameter("n",_user.getName()).setParameter("p",_user.getPassword()).uniqueResult();
+        User user = (User) query_("from User u where (u.username=:n or u.email=:n) and u.password=:p").setParameter("n",_user.getUsername()).setParameter("p",_user.getPassword()).uniqueResult();
         return user;
     }
 
@@ -46,17 +48,22 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
 
     @Override
     public Integer save(User entity) {
+        entity.setUuid("");
+        entity.setModifyUserId(entity.getUserId());
+        entity.setModifyTime((Timestamp) new Date());
+//        entity.setFlag();
         save_(entity);
-        return entity.getId();
+        return entity.getUserId();
     }
 
     @Override
     public Integer saveOrUpdate(User entity) {
-        User u = this.load(entity.getId());
-        u.setName(entity.getName());
+        User u = this.load(entity.getUserId());
+        u.setUsername(entity.getUsername());
+        u.setEmail(entity.getEmail());
         u.setPassword(entity.getPassword());
         this.getCurrentSession().update(u);
-        return u.getId();
+        return u.getUserId();
     }
 
     @Override

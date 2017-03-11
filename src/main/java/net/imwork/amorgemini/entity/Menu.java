@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 public class Menu {
-    private int menuId;
+    private Integer menuId;
     private String menuName;
     private String menuUrl;
     private Integer menuFid;
@@ -18,16 +18,16 @@ public class Menu {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Byte flag;
+    private Boolean flag;
     private Collection<MenuPermissionRelation> menuPermissionRelationsByMenuId;
 
     @Id
     @Column(name = "menu_id", nullable = false)
-    public int getMenuId() {
+    public Integer  getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(int menuId) {
+    public void setMenuId(Integer  menuId) {
         this.menuId = menuId;
     }
 
@@ -113,11 +113,11 @@ public class Menu {
 
     @Basic
     @Column(name = "flag", nullable = true)
-    public Byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(Byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 
