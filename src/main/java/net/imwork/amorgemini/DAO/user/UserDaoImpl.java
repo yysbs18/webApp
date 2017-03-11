@@ -28,9 +28,9 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(User id) {
-
-        return null;
+    public User get(User _user) {
+        User user = (User) query_("from User u where u.name=:n and u.password=:p").setParameter("n",_user.getName()).setParameter("p",_user.getPassword()).uniqueResult();
+        return user;
     }
 
     @Override

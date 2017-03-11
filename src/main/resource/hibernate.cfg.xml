@@ -12,10 +12,8 @@
       <!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，webApp是数据库名-->
       <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/webApp</property>
       <!--连接数据库是用户名-->
-      <property name="hibernate.connection.username">lvbr</property>
-      <!--连接数据库是密码-->
-      <property name="hibernate.connection.password">962464</property>
-      <!--数据库连接池的大小-->
+       <!--连接数据库是密码-->
+       <!--数据库连接池的大小-->
       <property name="hibernate.connection.pool.size">20</property>
       <!--是否在后台显示Hibernate用到的SQL语句，开发时设置为true，便于差错，程序运行时可以在Eclipse的控制台显示Hibernate的执行Sql语句。项目部署后可以设置为false，提高运行效率-->
       <property name="hibernate.show_sql">true</property>
@@ -30,7 +28,7 @@
       <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
       <property name="connection.characterEncoding">gbk</property>
 
-      <!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->
+       <!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->
       <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
       <!--指定映射文件为“hibernate/ch1/UserInfo.hbm.xml”-->
       <mapping package="net.imwork.amorgemini.entity"/>

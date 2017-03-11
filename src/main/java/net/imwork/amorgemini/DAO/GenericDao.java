@@ -7,20 +7,19 @@ import java.util.List;
  * Created by Administrator on 2017/2/25.
  */
 public interface GenericDao<T, PK extends Serializable> {
+    T load(Integer _id);
 
-    T load(Integer id);
-
-    T get(T entity);
+    T get(T _entity);
 
     List<T> findAll();
 
-    void persist(T entity);
+    void persist(T _entity);
 
     PK save(T entity);
 
-    PK saveOrUpdate(T entity);
+    PK saveOrUpdate(T _entity);
 
-    void delete(PK id);
+    void delete(PK _id);
 
     void flush();
 }

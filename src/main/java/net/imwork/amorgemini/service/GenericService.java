@@ -7,19 +7,19 @@ import java.util.List;
  * Created by lvbr on 2017/3/8.
  */
 public interface GenericService<T, PK extends Serializable> {
-    T load(Integer id);
+    T load(Integer _id);
 
-    T get(PK id);
+    Boolean get(T _entity);
 
     List<T> findAll();
 
-    void persist(T entity);
+    void persist(T _entity);
 
-    PK save(T entity);
+    PK save(T _entity);
 
-    Integer saveOrUpdate(T entity);
+    Integer saveOrUpdate(T _entity);
 
-    void delete(PK id);
+    void delete(PK _id);
 
     void flush();
 }

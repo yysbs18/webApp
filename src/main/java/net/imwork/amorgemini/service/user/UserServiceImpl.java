@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(Integer id) {
-        return null;
+    public Boolean get(User _user) {
+        return null != userDao.get(_user);
     }
 
     @Override

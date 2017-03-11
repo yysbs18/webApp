@@ -1,11 +1,14 @@
 package net.imwork.amorgemini.user;
 
+import net.imwork.amorgemini.controller.GenericController;
 import net.imwork.amorgemini.entity.User;
 import net.imwork.amorgemini.service.user.UserService;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,7 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring.xml",
         "classpath:spring-hibernate.xml"})
-public class TestUserService {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class TestUserService extends GenericController{
     private static final Logger LOGGER = Logger
             .getLogger(TestUserService.class);
 
@@ -28,12 +32,20 @@ public class TestUserService {
         User user = new User();
         user.setName("zzz");
         user.setPassword("123456");
-        Integer id = userService.save(user);
-        LOGGER.info(id);
+        jsonResult.put("id", userService.save(user));
+        LOGGER.info(jsonResult);
+    }
+    @Test
+    public void get2() {
+        User user = new User();
+        user.setName("zzz");
+        user.setPassword("123456");
+        jsonResult.put("isExist", userService.get(user));
+        LOGGER.info(jsonResult);
     }
 
     @Test
-    public void findAll2() {
+    public void findAll3() {
         LOGGER.info(JSONArray.fromObject(userService.findAll()));
     }
 }
