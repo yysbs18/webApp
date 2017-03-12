@@ -1,10 +1,8 @@
 package net.imwork.amorgemini.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 /**
  * Created by lvbr on 2017/3/11.
@@ -16,16 +14,20 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private Byte sex;
+    private Boolean sex;
     private String token;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Boolean flag;
+    private User userByModifyUserId;
+    private Collection<User> usersByUserId;
+    private Collection<UserGroupUserRelation> userGroupUserRelationsByUserId;
+    private Collection<UserRoleRelation> userRoleRelationsByUserId;
 
     @Id
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
     }
@@ -35,7 +37,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "uuid", nullable = false, length = 32)
+    @Column(name = "uuid")
     public String getUuid() {
         return uuid;
     }
@@ -45,7 +47,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 64)
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -55,7 +57,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = false, length = 32)
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -65,7 +67,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 32)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -75,17 +77,17 @@ public class User {
     }
 
     @Basic
-    @Column(name = "sex", nullable = true)
-    public Byte getSex() {
+    @Column(name = "sex")
+    public Boolean getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Boolean sex) {
         this.sex = sex;
     }
 
     @Basic
-    @Column(name = "token", nullable = false, length = 32)
+    @Column(name = "token")
     public String getToken() {
         return token;
     }
@@ -95,7 +97,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creata_user_id", nullable = true)
+    @Column(name = "creata_user_id",insertable=false,updatable=false)
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -105,7 +107,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creata_time", nullable = false)
+    @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
     }
@@ -115,7 +117,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "modify_user_id", nullable = true)
+    @Column(name = "modify_user_id",insertable=false,updatable=false)
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -125,7 +127,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "modify_time", nullable = false)
+    @Column(name = "modify_time")
     public Timestamp getModifyTime() {
         return modifyTime;
     }
@@ -135,7 +137,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "flag", nullable = true)
+    @Column(name = "flag")
     public Boolean getFlag() {
         return flag;
     }
@@ -180,5 +182,42 @@ public class User {
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modify_user_id", referencedColumnName = "user_id")
+    public User getUserByModifyUserId() {
+        return userByModifyUserId;
+    }
+
+    public void setUserByModifyUserId(User userByModifyUserId) {
+        this.userByModifyUserId = userByModifyUserId;
+    }
+
+    @OneToMany(mappedBy = "userByModifyUserId")
+    public Collection<User> getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(Collection<User> usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<UserGroupUserRelation> getUserGroupUserRelationsByUserId() {
+        return userGroupUserRelationsByUserId;
+    }
+
+    public void setUserGroupUserRelationsByUserId(Collection<UserGroupUserRelation> userGroupUserRelationsByUserId) {
+        this.userGroupUserRelationsByUserId = userGroupUserRelationsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserid")
+    public Collection<UserRoleRelation> getUserRoleRelationsByUserId() {
+        return userRoleRelationsByUserId;
+    }
+
+    public void setUserRoleRelationsByUserId(Collection<UserRoleRelation> userRoleRelationsByUserId) {
+        this.userRoleRelationsByUserId = userRoleRelationsByUserId;
     }
 }
