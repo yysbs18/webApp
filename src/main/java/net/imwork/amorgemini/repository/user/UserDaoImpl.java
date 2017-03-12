@@ -1,9 +1,10 @@
-package net.imwork.amorgemini.dao.user;
+package net.imwork.amorgemini.repository.user;
 
-import net.imwork.amorgemini.dao.GenericDaoImpl;
 import net.imwork.amorgemini.entity.User;
+import net.imwork.amorgemini.repository.GenericDaoImpl;
 import net.imwork.amorgemini.util.UUIDUtil;
 import org.hibernate.transform.Transformers;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -12,9 +13,8 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/2/25.
  */
-
+@Repository("userDao")
 public class UserDaoImpl extends GenericDaoImpl implements UserDao {
-
     @Override
     public User load(Integer id) {
         return load_(User.class, id);

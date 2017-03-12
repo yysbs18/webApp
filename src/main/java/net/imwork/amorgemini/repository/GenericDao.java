@@ -1,4 +1,4 @@
-package net.imwork.amorgemini.dao;
+package net.imwork.amorgemini.repository;
 
 import java.io.Serializable;
 import java.util.List;

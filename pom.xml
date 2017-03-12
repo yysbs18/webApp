@@ -25,6 +25,7 @@
         <hibernate.version>4.3.11.Final</hibernate.version>
         <aspectj.version>1.8.1</aspectj.version>
         <jackson.version>2.5.0</jackson.version>
+        <dbcp.version>6.0.41</dbcp.version>
     </properties>
     <dependencies>
         <dependency>
@@ -97,11 +98,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
-        <!-- c3p0数据源 -->
+        <!-- 数据源 -->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5-pre10</version>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>dbcp</artifactId>
+            <version>${dbcp.version}</version>
         </dependency>
         <!--hibernate-->
         <dependency>
