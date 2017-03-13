@@ -14,7 +14,7 @@ public class UserRoleRelation {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Boolean flag;
+    private Byte flag;
     private User userByUserid;
     private UserRole userRoleByUserRoleId;
 
@@ -71,11 +71,11 @@ public class UserRoleRelation {
 
     @Basic
     @Column(name = "flag")
-    public Boolean getFlag() {
+    public Byte getFlag() {
         return flag;
     }
 
-    public void setFlag(Boolean flag) {
+    public void setFlag(Byte flag) {
         this.flag = flag;
     }
 

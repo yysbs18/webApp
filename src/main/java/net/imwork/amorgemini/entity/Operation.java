@@ -18,7 +18,7 @@ public class Operation {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Boolean flag;
+    private Byte flag;
     private Collection<PermissionOperationRelation> permissionOperationRelationsByOperationId;
 
     @Id
@@ -113,11 +113,11 @@ public class Operation {
 
     @Basic
     @Column(name = "flag")
-    public Boolean getFlag() {
+    public Byte getFlag() {
         return flag;
     }
 
-    public void setFlag(Boolean flag) {
+    public void setFlag(Byte flag) {
         this.flag = flag;
     }
 

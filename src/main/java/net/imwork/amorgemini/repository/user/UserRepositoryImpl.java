@@ -1,20 +1,18 @@
 package net.imwork.amorgemini.repository.user;
 
 import net.imwork.amorgemini.entity.User;
-import net.imwork.amorgemini.repository.GenericDaoImpl;
+import net.imwork.amorgemini.repository.GenericRepositoryImpl;
 import net.imwork.amorgemini.util.UUIDUtil;
 import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/25.
  */
 @Repository("userDao")
-public class UserDaoImpl extends GenericDaoImpl implements UserDao {
+public class UserRepositoryImpl extends GenericRepositoryImpl implements UserRepository {
     @Override
     public User load(Integer id) {
         return load_(User.class, id);
@@ -28,7 +26,7 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
-        List<User> userList = query_("from User ").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).setCacheable(true).list();
+        List<User> userList = session_().createQuery("select u.username as username from User u where u.flag>0").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
         return userList;
     }
 
@@ -41,8 +39,8 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao {
     public Integer save(User entity) {
         entity.setUuid(UUIDUtil.uuid());
         entity.setModifyUserId(entity.getUserId());
-        entity.setModifyTime((Timestamp) new Date());
-        entity.setFlag(true);
+//        entity.setModifyTime((Timestamp) new Date());
+        entity.setFlag((byte) 1);
         save_(entity);
         return entity.getUserId();
     }

@@ -17,8 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by Administrator on 2017/2/25.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring.xml",
-        "classpath:spring-hibernate.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestUserService extends GenericController{
     private static final Logger LOGGER = Logger
@@ -38,8 +37,8 @@ public class TestUserService extends GenericController{
     @Test
     public void get2() {
         User user = new User();
-        user.setUsername("zzz");
-        user.setPassword("123456");
+        user.setUsername("ss");
+        user.setPassword("ss");
         jsonResult.put("isExist", userService.get(user));
         LOGGER.info(jsonResult);
     }

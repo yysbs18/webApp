@@ -1,7 +1,7 @@
 package net.imwork.amorgemini.service.user;
 
 import net.imwork.amorgemini.entity.User;
-import net.imwork.amorgemini.repository.user.UserDao;
+import net.imwork.amorgemini.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,21 +13,21 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Override
     public User load(Integer id) {
-        return userDao.load(id);
+        return userRepository.load(id);
     }
 
     @Override
     public Boolean get(User _user) {
-        return null != userDao.get(_user);
+        return null != userRepository.get(_user);
     }
 
     @Override
     public List<User> findAll() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Override
@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer save(User entity) {
-        return userDao.save(entity);
+        return userRepository.save(entity);
     }
 
     @Override
     public Integer saveOrUpdate(User entity) {
-        return userDao.saveOrUpdate(entity);
+        return userRepository.saveOrUpdate(entity);
     }
 
     @Override

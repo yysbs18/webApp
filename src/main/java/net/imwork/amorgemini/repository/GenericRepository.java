@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/2/25.
  */
-public interface GenericDao<T, PK extends Serializable> {
+public interface GenericRepository<T, PK extends Serializable> {
     T load(Integer _id);
 
     T get(T _entity);

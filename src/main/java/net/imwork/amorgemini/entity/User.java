@@ -20,7 +20,7 @@ public class User {
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
-    private Boolean flag;
+    private Byte flag;
     private User userByModifyUserId;
     private Collection<User> usersByUserId;
     private Collection<UserGroupUserRelation> userGroupUserRelationsByUserId;
@@ -138,11 +138,11 @@ public class User {
 
     @Basic
     @Column(name = "flag")
-    public Boolean getFlag() {
+    public Byte getFlag() {
         return flag;
     }
 
-    public void setFlag(Boolean flag) {
+    public void setFlag(Byte flag) {
         this.flag = flag;
     }
 

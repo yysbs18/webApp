@@ -11,7 +11,8 @@ import javax.annotation.Resource;
 /**
  * Created by lvbr on 2017/3/8.
  */
-public abstract class GenericDaoImpl {
+//@Repository
+public abstract class GenericRepositoryImpl {
     @Resource
     SessionFactory sessionFactory;
     final protected Session session_(){

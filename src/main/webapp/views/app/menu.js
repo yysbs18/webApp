@@ -13,5 +13,14 @@
             });
             return flag;
         };
+        $http({
+            method: 'get',
+            url: app.getUrl('menu/getMenus'),
+            params: {},
+        }).then(function (res) {
+
+        }, function (rej) {
+
+        });
     }]);
 }(window, window.angular, window.app, window.webApp));

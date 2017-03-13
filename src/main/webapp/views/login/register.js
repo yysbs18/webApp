@@ -15,7 +15,7 @@
         $http({
             method: 'post',
             url: app.getUrl('/user/saveUser'),
-            data: {id: 333, name: '测试', password: +Math.round(Math.random() * 100000)}
+            data: {userId: 333, username: '测试',email:'email', password: +Math.round(Math.random() * 100000)}
         }).then(function (res) {
 
         }, function (rej) {

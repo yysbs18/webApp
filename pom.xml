@@ -100,10 +100,16 @@
             <version>${mysql.version}</version>
         </dependency>
         <!-- 数据源 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>dbcp</artifactId>
             <version>${dbcp.version}</version>
+        </dependency>-->
+        <!-- c3p0数据源 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5-pre10</version>
         </dependency>
         <!--hibernate-->
         <dependency>
