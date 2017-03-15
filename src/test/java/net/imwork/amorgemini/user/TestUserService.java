@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by Administrator on 2017/2/25.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:spring.xml"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestUserService extends GenericController{
     private static final Logger LOGGER = Logger
@@ -31,14 +31,16 @@ public class TestUserService extends GenericController{
         User user = new User();
         user.setUsername("zzz");
         user.setPassword("123456");
+        user.setEmail("123456@163.com");
+        user.setToken("123456@163.com");
         jsonResult.put("id", userService.save(user));
         LOGGER.info(jsonResult);
     }
     @Test
     public void get2() {
         User user = new User();
-        user.setUsername("ss");
-        user.setPassword("ss");
+        user.setUsername("admin");
+        user.setPassword("962464");
         jsonResult.put("isExist", userService.get(user));
         LOGGER.info(jsonResult);
     }

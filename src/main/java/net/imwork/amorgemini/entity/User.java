@@ -1,40 +1,28 @@
 package net.imwork.amorgemini.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
- * Created by lvbr on 2017/3/11.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 public class User {
-    private Integer userId;
     private String uuid;
     private String email;
     private String username;
     private String password;
-    private Boolean sex;
+    private Byte sex;
     private String token;
-    private Integer creataUserId;
     private Timestamp creataTime;
-    private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
-    private User userByModifyUserId;
-    private Collection<User> usersByUserId;
-    private Collection<UserGroupUserRelation> userGroupUserRelationsByUserId;
-    private Collection<UserRoleRelation> userRoleRelationsByUserId;
-
-    @Id
-    @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    private Integer creataUserId;
+    private Integer modifyUserId;
+    private Integer userId;
 
     @Basic
     @Column(name = "uuid")
@@ -78,11 +66,11 @@ public class User {
 
     @Basic
     @Column(name = "sex")
-    public Boolean getSex() {
+    public Byte getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(Byte sex) {
         this.sex = sex;
     }
 
@@ -97,16 +85,6 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
-    public Integer getCreataUserId() {
-        return creataUserId;
-    }
-
-    public void setCreataUserId(Integer creataUserId) {
-        this.creataUserId = creataUserId;
-    }
-
-    @Basic
     @Column(name = "creata_time")
     public Timestamp getCreataTime() {
         return creataTime;
@@ -114,16 +92,6 @@ public class User {
 
     public void setCreataTime(Timestamp creataTime) {
         this.creataTime = creataTime;
-    }
-
-    @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
-    public Integer getModifyUserId() {
-        return modifyUserId;
-    }
-
-    public void setModifyUserId(Integer modifyUserId) {
-        this.modifyUserId = modifyUserId;
     }
 
     @Basic
@@ -146,6 +114,36 @@ public class User {
         this.flag = flag;
     }
 
+    @Basic
+    @Column(name = "creata_user_id")
+    public Integer getCreataUserId() {
+        return creataUserId;
+    }
+
+    public void setCreataUserId(Integer creataUserId) {
+        this.creataUserId = creataUserId;
+    }
+
+    @Basic
+    @Column(name = "modify_user_id")
+    public Integer getModifyUserId() {
+        return modifyUserId;
+    }
+
+    public void setModifyUserId(Integer modifyUserId) {
+        this.modifyUserId = modifyUserId;
+    }
+
+    @Id
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,71 +151,34 @@ public class User {
 
         User user = (User) o;
 
-        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
         if (uuid != null ? !uuid.equals(user.uuid) : user.uuid != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
         if (token != null ? !token.equals(user.token) : user.token != null) return false;
-        if (creataUserId != null ? !creataUserId.equals(user.creataUserId) : user.creataUserId != null) return false;
         if (creataTime != null ? !creataTime.equals(user.creataTime) : user.creataTime != null) return false;
-        if (modifyUserId != null ? !modifyUserId.equals(user.modifyUserId) : user.modifyUserId != null) return false;
         if (modifyTime != null ? !modifyTime.equals(user.modifyTime) : user.modifyTime != null) return false;
-        return flag != null ? flag.equals(user.flag) : user.flag == null;
+        if (flag != null ? !flag.equals(user.flag) : user.flag != null) return false;
+        if (creataUserId != null ? !creataUserId.equals(user.creataUserId) : user.creataUserId != null) return false;
+        if (modifyUserId != null ? !modifyUserId.equals(user.modifyUserId) : user.modifyUserId != null) return false;
+        return userId != null ? userId.equals(user.userId) : user.userId == null;
     }
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (uuid != null ? uuid.hashCode() : 0);
+        int result = uuid != null ? uuid.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
-        result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);
-        result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
+        result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
+        result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "modify_user_id", referencedColumnName = "user_id")
-    public User getUserByModifyUserId() {
-        return userByModifyUserId;
-    }
-
-    public void setUserByModifyUserId(User userByModifyUserId) {
-        this.userByModifyUserId = userByModifyUserId;
-    }
-
-    @OneToMany(mappedBy = "userByModifyUserId")
-    public Collection<User> getUsersByUserId() {
-        return usersByUserId;
-    }
-
-    public void setUsersByUserId(Collection<User> usersByUserId) {
-        this.usersByUserId = usersByUserId;
-    }
-
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<UserGroupUserRelation> getUserGroupUserRelationsByUserId() {
-        return userGroupUserRelationsByUserId;
-    }
-
-    public void setUserGroupUserRelationsByUserId(Collection<UserGroupUserRelation> userGroupUserRelationsByUserId) {
-        this.userGroupUserRelationsByUserId = userGroupUserRelationsByUserId;
-    }
-
-    @OneToMany(mappedBy = "userByUserid")
-    public Collection<UserRoleRelation> getUserRoleRelationsByUserId() {
-        return userRoleRelationsByUserId;
-    }
-
-    public void setUserRoleRelationsByUserId(Collection<UserRoleRelation> userRoleRelationsByUserId) {
-        this.userRoleRelationsByUserId = userRoleRelationsByUserId;
     }
 }

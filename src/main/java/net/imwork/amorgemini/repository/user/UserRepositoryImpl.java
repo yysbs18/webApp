@@ -26,7 +26,7 @@ public class UserRepositoryImpl extends GenericRepositoryImpl implements UserRep
 
     @Override
     public List<User> findAll() {
-        List<User> userList = session_().createQuery("select u.username as username from User u where u.flag>0").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+        List<User> userList = query_("select u.username as username from User u where u.flag>0").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
         return userList;
     }
 
@@ -38,7 +38,7 @@ public class UserRepositoryImpl extends GenericRepositoryImpl implements UserRep
     @Override
     public Integer save(User entity) {
         entity.setUuid(UUIDUtil.uuid());
-        entity.setModifyUserId(entity.getUserId());
+//        entity.setModifyUserId(entity.getUserId());
 //        entity.setModifyTime((Timestamp) new Date());
         entity.setFlag((byte) 1);
         save_(entity);

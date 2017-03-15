@@ -2,10 +2,9 @@ package net.imwork.amorgemini.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 @Table(name = "user_group", schema = "webapp", catalog = "")
@@ -18,8 +17,6 @@ public class UserGroup {
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
-    private Collection<UserGroupUserRelation> userGroupUserRelationsByUserGroupId;
-    private Collection<UserGroupUserRoleRelation> userGroupUserRoleRelationsByUserGroupId;
 
     @Id
     @Column(name = "user_group_id")
@@ -52,7 +49,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -72,7 +69,7 @@ public class UserGroup {
     }
 
     @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -134,23 +131,5 @@ public class UserGroup {
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "userGroupByUserGroupId")
-    public Collection<UserGroupUserRelation> getUserGroupUserRelationsByUserGroupId() {
-        return userGroupUserRelationsByUserGroupId;
-    }
-
-    public void setUserGroupUserRelationsByUserGroupId(Collection<UserGroupUserRelation> userGroupUserRelationsByUserGroupId) {
-        this.userGroupUserRelationsByUserGroupId = userGroupUserRelationsByUserGroupId;
-    }
-
-    @OneToMany(mappedBy = "userGroupByUserGroupId")
-    public Collection<UserGroupUserRoleRelation> getUserGroupUserRoleRelationsByUserGroupId() {
-        return userGroupUserRoleRelationsByUserGroupId;
-    }
-
-    public void setUserGroupUserRoleRelationsByUserGroupId(Collection<UserGroupUserRoleRelation> userGroupUserRoleRelationsByUserGroupId) {
-        this.userGroupUserRoleRelationsByUserGroupId = userGroupUserRoleRelationsByUserGroupId;
     }
 }

@@ -4,28 +4,38 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 @Table(name = "user_group_user_role_relation", schema = "webapp", catalog = "")
 public class UserGroupUserRoleRelation {
-    private Integer creataUserId;
+    private Integer userGroupId;
+    private Integer userRoleId;
     private Timestamp creataTime;
-    private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
+    private Integer creataUserId;
+    private Integer modifyUserId;
     private Integer id;
-    private UserGroup userGroupByUserGroupId;
-    private UserRole userRoleByUserRoleId;
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
-    public Integer getCreataUserId() {
-        return creataUserId;
+    @Column(name = "user_group_id")
+    public Integer getUserGroupId() {
+        return userGroupId;
     }
 
-    public void setCreataUserId(Integer creataUserId) {
-        this.creataUserId = creataUserId;
+    public void setUserGroupId(Integer userGroupId) {
+        this.userGroupId = userGroupId;
+    }
+
+    @Basic
+    @Column(name = "user_role_id")
+    public Integer getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(Integer userRoleId) {
+        this.userRoleId = userRoleId;
     }
 
     @Basic
@@ -36,16 +46,6 @@ public class UserGroupUserRoleRelation {
 
     public void setCreataTime(Timestamp creataTime) {
         this.creataTime = creataTime;
-    }
-
-    @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
-    public Integer getModifyUserId() {
-        return modifyUserId;
-    }
-
-    public void setModifyUserId(Integer modifyUserId) {
-        this.modifyUserId = modifyUserId;
     }
 
     @Basic
@@ -68,9 +68,28 @@ public class UserGroupUserRoleRelation {
         this.flag = flag;
     }
 
+    @Basic
+    @Column(name = "creata_user_id")
+    public Integer getCreataUserId() {
+        return creataUserId;
+    }
+
+    public void setCreataUserId(Integer creataUserId) {
+        this.creataUserId = creataUserId;
+    }
+
+    @Basic
+    @Column(name = "modify_user_id")
+    public Integer getModifyUserId() {
+        return modifyUserId;
+    }
+
+    public void setModifyUserId(Integer modifyUserId) {
+        this.modifyUserId = modifyUserId;
+    }
+
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -86,42 +105,26 @@ public class UserGroupUserRoleRelation {
 
         UserGroupUserRoleRelation that = (UserGroupUserRoleRelation) o;
 
-        if (creataUserId != null ? !creataUserId.equals(that.creataUserId) : that.creataUserId != null) return false;
+        if (userGroupId != null ? !userGroupId.equals(that.userGroupId) : that.userGroupId != null) return false;
+        if (userRoleId != null ? !userRoleId.equals(that.userRoleId) : that.userRoleId != null) return false;
         if (creataTime != null ? !creataTime.equals(that.creataTime) : that.creataTime != null) return false;
-        if (modifyUserId != null ? !modifyUserId.equals(that.modifyUserId) : that.modifyUserId != null) return false;
         if (modifyTime != null ? !modifyTime.equals(that.modifyTime) : that.modifyTime != null) return false;
         if (flag != null ? !flag.equals(that.flag) : that.flag != null) return false;
+        if (creataUserId != null ? !creataUserId.equals(that.creataUserId) : that.creataUserId != null) return false;
+        if (modifyUserId != null ? !modifyUserId.equals(that.modifyUserId) : that.modifyUserId != null) return false;
         return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = creataUserId != null ? creataUserId.hashCode() : 0;
+        int result = userGroupId != null ? userGroupId.hashCode() : 0;
+        result = 31 * result + (userRoleId != null ? userRoleId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);
-        result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
+        result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
+        result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_group_id", referencedColumnName = "user_group_id", nullable = false)
-    public UserGroup getUserGroupByUserGroupId() {
-        return userGroupByUserGroupId;
-    }
-
-    public void setUserGroupByUserGroupId(UserGroup userGroupByUserGroupId) {
-        this.userGroupByUserGroupId = userGroupByUserGroupId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_role_id", referencedColumnName = "user_role_id", nullable = false)
-    public UserRole getUserRoleByUserRoleId() {
-        return userRoleByUserRoleId;
-    }
-
-    public void setUserRoleByUserRoleId(UserRole userRoleByUserRoleId) {
-        this.userRoleByUserRoleId = userRoleByUserRoleId;
     }
 }

@@ -1,11 +1,13 @@
 package net.imwork.amorgemini.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 public class Operation {
@@ -19,7 +21,6 @@ public class Operation {
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
-    private Collection<PermissionOperationRelation> permissionOperationRelationsByOperationId;
 
     @Id
     @Column(name = "operation_id")
@@ -72,7 +73,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -92,7 +93,7 @@ public class Operation {
     }
 
     @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -160,14 +161,5 @@ public class Operation {
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "operationByOperationId")
-    public Collection<PermissionOperationRelation> getPermissionOperationRelationsByOperationId() {
-        return permissionOperationRelationsByOperationId;
-    }
-
-    public void setPermissionOperationRelationsByOperationId(Collection<PermissionOperationRelation> permissionOperationRelationsByOperationId) {
-        this.permissionOperationRelationsByOperationId = permissionOperationRelationsByOperationId;
     }
 }

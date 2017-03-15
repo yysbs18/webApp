@@ -1,11 +1,13 @@
 package net.imwork.amorgemini.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 public class Permission {
@@ -16,9 +18,7 @@ public class Permission {
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
-    private Collection<MenuPermissionRelation> menuPermissionRelationsByPermissionId;
-    private Collection<PermissionOperationRelation> permissionOperationRelationsByPermissionId;
-    private Collection<UserRolePermissionRalation> userRolePermissionRalationsByPermissionId;
+    private String permissionName;
 
     @Id
     @Column(name = "permission_id")
@@ -41,7 +41,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -61,7 +61,7 @@ public class Permission {
     }
 
     @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -90,6 +90,16 @@ public class Permission {
         this.flag = flag;
     }
 
+    @Basic
+    @Column(name = "permission_name")
+    public String getPermissionName() {
+        return permissionName;
+    }
+
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,7 +114,8 @@ public class Permission {
         if (creataTime != null ? !creataTime.equals(that.creataTime) : that.creataTime != null) return false;
         if (modifyUserId != null ? !modifyUserId.equals(that.modifyUserId) : that.modifyUserId != null) return false;
         if (modifyTime != null ? !modifyTime.equals(that.modifyTime) : that.modifyTime != null) return false;
-        return flag != null ? flag.equals(that.flag) : that.flag == null;
+        if (flag != null ? !flag.equals(that.flag) : that.flag != null) return false;
+        return permissionName != null ? permissionName.equals(that.permissionName) : that.permissionName == null;
     }
 
     @Override
@@ -116,33 +127,7 @@ public class Permission {
         result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
+        result = 31 * result + (permissionName != null ? permissionName.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "permissionByPermissionId")
-    public Collection<MenuPermissionRelation> getMenuPermissionRelationsByPermissionId() {
-        return menuPermissionRelationsByPermissionId;
-    }
-
-    public void setMenuPermissionRelationsByPermissionId(Collection<MenuPermissionRelation> menuPermissionRelationsByPermissionId) {
-        this.menuPermissionRelationsByPermissionId = menuPermissionRelationsByPermissionId;
-    }
-
-    @OneToMany(mappedBy = "permissionByPermissionId")
-    public Collection<PermissionOperationRelation> getPermissionOperationRelationsByPermissionId() {
-        return permissionOperationRelationsByPermissionId;
-    }
-
-    public void setPermissionOperationRelationsByPermissionId(Collection<PermissionOperationRelation> permissionOperationRelationsByPermissionId) {
-        this.permissionOperationRelationsByPermissionId = permissionOperationRelationsByPermissionId;
-    }
-
-    @OneToMany(mappedBy = "permissionByPermissionId")
-    public Collection<UserRolePermissionRalation> getUserRolePermissionRalationsByPermissionId() {
-        return userRolePermissionRalationsByPermissionId;
-    }
-
-    public void setUserRolePermissionRalationsByPermissionId(Collection<UserRolePermissionRalation> userRolePermissionRalationsByPermissionId) {
-        this.userRolePermissionRalationsByPermissionId = userRolePermissionRalationsByPermissionId;
     }
 }

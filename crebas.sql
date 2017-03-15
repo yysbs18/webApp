@@ -1,7 +1,3 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/3/11 13:45:24                           */
-/*==============================================================*/
 drop table if exists menu;
 
 drop table if exists menu_permission_relation;
@@ -26,12 +22,9 @@ drop table if exists user_role_permission_ralation;
 
 drop table if exists user_role_relation;
 
-/*==============================================================*/
-/* Table: menu                                                  */
-/*==============================================================*/
 create table menu
 (
-   menu_id              int not null,
+   menu_id              int not null auto_increment,
    menu_name            varchar(32) not null,
    menu_url             varchar(64) not null,
    menu_fid             int,
@@ -40,33 +33,30 @@ create table menu
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (menu_id)
 );
 
-alter table menu
-   add primary key (menu_id);
+alter table menu comment '菜单表';
 
-/*==============================================================*/
-/* Table: menu_permission_relation                              */
-/*==============================================================*/
 create table menu_permission_relation
 (
-   menu_id              int not null,
-   permission_id        int not null,
-   permission__id       int,
+   id                   int not null auto_increment,
+   menu_id              int,
+   permission_id        int,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (id)
 );
 
-/*==============================================================*/
-/* Table: operation                                             */
-/*==============================================================*/
+alter table menu_permission_relation comment '菜单权限关联';
+
 create table operation
 (
-   operation_id         int not null,
+   operation_id         int not null auto_increment,
    operation_name       varchar(32) not null,
    operation_code       varchar(32) not null,
    intercept_prefix     varchar(64),
@@ -75,181 +65,147 @@ create table operation
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (operation_id)
 );
 
-alter table operation
-   add primary key (operation_id);
+alter table operation comment '功能操作表';
 
-/*==============================================================*/
-/* Table: permission                                            */
-/*==============================================================*/
 create table permission
 (
-   permission_id        int not null,
+   permission_id        int not null auto_increment,
+   permission_name      varchar(32) not null,
    permission_type      varchar(32) not null,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (permission_id)
 );
 
-alter table permission
-   add primary key (permission_id);
+alter table permission comment '权限表';
 
-/*==============================================================*/
-/* Table: permission_operation_relation                         */
-/*==============================================================*/
 create table permission_operation_relation
 (
-   permission_id        int not null,
+   id                   int not null auto_increment,
+   permission_id        int,
    operation_id         int,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (id)
 );
 
-/*==============================================================*/
-/* Table: user                                                  */
-/*==============================================================*/
+alter table permission_operation_relation comment '权限操作关联';
+
 create table user
 (
-   user_id              int not null,
+   user_id              int not null auto_increment,
    uuid                 varchar(32) not null,
    email                varchar(64) not null,
    username             varchar(32) not null,
    password             varchar(32) not null,
    sex                  bool,
-   token                varchar(32) not null,
+   token                varchar(32),
+   creata_user_id       int,
    creata_time          timestamp,
+   modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (user_id)
 );
 
-alter table user
-   add primary key (user_id);
+alter table user comment '用户表';
 
-/*==============================================================*/
-/* Table: user_group                                            */
-/*==============================================================*/
 create table user_group
 (
-   user_group_id        int not null,
+   user_group_id        int not null auto_increment,
    user_group_name      varchar(32) not null,
    user_group_fid       int,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (user_group_id)
 );
 
-alter table user_group
-   add primary key (user_group_id);
+alter table user_group comment '用户组';
 
-/*==============================================================*/
-/* Table: user_group_user_relation                              */
-/*==============================================================*/
 create table user_group_user_relation
 (
-   user_group_id        int not null,
-   user_id              int not null,
+   id                   int not null auto_increment,
+   user_group_id        int,
+   user_id              int,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (id)
 );
 
-/*==============================================================*/
-/* Table: user_group_user_role_relation                         */
-/*==============================================================*/
+alter table user_group_user_relation comment '用户组用户关联';
+
 create table user_group_user_role_relation
 (
-   user_group_id        int not null,
-   user_role_id         int not null,
-   creata_time          timestamp,
-   modify_time          timestamp,
-   flag                 bool
-);
-
-/*==============================================================*/
-/* Table: user_role                                             */
-/*==============================================================*/
-create table user_role
-(
-   user_role_id         int not null,
-   user_role_name       varchar(32) not null,
-   creata_time          timestamp,
-   modify_time          timestamp,
-   flag                 bool
-);
-
-alter table user_role
-   add primary key (user_role_id);
-
-/*==============================================================*/
-/* Table: user_role_permission_ralation                         */
-/*==============================================================*/
-create table user_role_permission_ralation
-(
-   user_role_id         int not null,
-   permission_id        int not null,
+   id                   int not null auto_increment,
+   user_group_id        int,
+   user_role_id         int,
    creata_user_id       int,
    creata_time          timestamp,
    modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (id)
 );
 
-/*==============================================================*/
-/* Table: user_role_relation                                    */
-/*==============================================================*/
+alter table user_group_user_role_relation comment '用户组角色关联';
+
+create table user_role
+(
+   user_role_id         int not null auto_increment,
+   user_role_name       varchar(32) not null,
+   creata_user_id       int,
+   creata_time          timestamp,
+   modify_user_id       int,
+   modify_time          timestamp,
+   flag                 bool,
+   primary key (user_role_id)
+);
+
+alter table user_role comment '角色表';
+
+create table user_role_permission_ralation
+(
+   id                   int not null auto_increment,
+   user_role_id         int,
+   permission_id        int,
+   creata_user_id       int,
+   creata_time          timestamp,
+   modify_user_id       int,
+   modify_time          timestamp,
+   flag                 bool,
+   primary key (id)
+);
+
+alter table user_role_permission_ralation comment '角色权限关联';
+
 create table user_role_relation
 (
-   userid               int not null,
-   user_role_id         int not null,
+   id                   int not null auto_increment,
+   user_id              int,
+   user_role_id         int,
+   creata_user_id       int,
    creata_time          timestamp,
+   modify_user_id       int,
    modify_time          timestamp,
-   flag                 bool
+   flag                 bool,
+   primary key (id)
 );
 
-alter table menu_permission_relation add constraint fk_reference_11 foreign key (menu_id)
-      references menu (menu_id) on delete restrict on update restrict;
-
-alter table menu_permission_relation add constraint fk_reference_12 foreign key (permission_id)
-      references permission (permission_id) on delete restrict on update restrict;
-
-alter table permission_operation_relation add constraint fk_reference_10 foreign key (permission_id)
-      references permission (permission_id) on delete restrict on update restrict;
-
-alter table permission_operation_relation add constraint fk_reference_9 foreign key (operation_id)
-      references operation (operation_id) on delete restrict on update restrict;
-
-alter table user_group_user_relation add constraint fk_reference_3 foreign key (user_group_id)
-      references user_group (user_group_id) on delete restrict on update restrict;
-
-alter table user_group_user_relation add constraint fk_reference_4 foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-alter table user_group_user_role_relation add constraint fk_reference_5 foreign key (user_group_id)
-      references user_group (user_group_id) on delete restrict on update restrict;
-
-alter table user_group_user_role_relation add constraint fk_reference_6 foreign key (user_role_id)
-      references user_role (user_role_id) on delete restrict on update restrict;
-
-alter table user_role_permission_ralation add constraint fk_reference_7 foreign key (user_role_id)
-      references user_role (user_role_id) on delete restrict on update restrict;
-
-alter table user_role_permission_ralation add constraint fk_reference_8 foreign key (permission_id)
-      references permission (permission_id) on delete restrict on update restrict;
-
-alter table user_role_relation add constraint fk_reference_1 foreign key (userid)
-      references user (user_id) on delete restrict on update restrict;
-
-alter table user_role_relation add constraint fk_reference_2 foreign key (user_role_id)
-      references user_role (user_role_id) on delete restrict on update restrict;
+alter table user_role_relation comment '用户角色关联表';
 

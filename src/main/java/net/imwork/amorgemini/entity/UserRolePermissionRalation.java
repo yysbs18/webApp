@@ -4,22 +4,42 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 @Table(name = "user_role_permission_ralation", schema = "webapp", catalog = "")
 public class UserRolePermissionRalation {
+    private Integer userRoleId;
+    private Integer permissionId;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
     private Integer id;
-    private UserRole userRoleByUserRoleId;
-    private Permission permissionByPermissionId;
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
+    @Column(name = "user_role_id")
+    public Integer getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(Integer userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+
+    @Basic
+    @Column(name = "permission_id")
+    public Integer getPermissionId() {
+        return permissionId;
+    }
+
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
+    }
+
+    @Basic
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -39,7 +59,7 @@ public class UserRolePermissionRalation {
     }
 
     @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -70,7 +90,6 @@ public class UserRolePermissionRalation {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -86,6 +105,8 @@ public class UserRolePermissionRalation {
 
         UserRolePermissionRalation that = (UserRolePermissionRalation) o;
 
+        if (userRoleId != null ? !userRoleId.equals(that.userRoleId) : that.userRoleId != null) return false;
+        if (permissionId != null ? !permissionId.equals(that.permissionId) : that.permissionId != null) return false;
         if (creataUserId != null ? !creataUserId.equals(that.creataUserId) : that.creataUserId != null) return false;
         if (creataTime != null ? !creataTime.equals(that.creataTime) : that.creataTime != null) return false;
         if (modifyUserId != null ? !modifyUserId.equals(that.modifyUserId) : that.modifyUserId != null) return false;
@@ -96,32 +117,14 @@ public class UserRolePermissionRalation {
 
     @Override
     public int hashCode() {
-        int result = creataUserId != null ? creataUserId.hashCode() : 0;
+        int result = userRoleId != null ? userRoleId.hashCode() : 0;
+        result = 31 * result + (permissionId != null ? permissionId.hashCode() : 0);
+        result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);
         result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_role_id", referencedColumnName = "user_role_id", nullable = false)
-    public UserRole getUserRoleByUserRoleId() {
-        return userRoleByUserRoleId;
-    }
-
-    public void setUserRoleByUserRoleId(UserRole userRoleByUserRoleId) {
-        this.userRoleByUserRoleId = userRoleByUserRoleId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "permission_id", referencedColumnName = "permission_id", nullable = false)
-    public Permission getPermissionByPermissionId() {
-        return permissionByPermissionId;
-    }
-
-    public void setPermissionByPermissionId(Permission permissionByPermissionId) {
-        this.permissionByPermissionId = permissionByPermissionId;
     }
 }

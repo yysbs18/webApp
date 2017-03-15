@@ -4,22 +4,52 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Administrator on 2017/3/12.
+ * Created by Administrator on 2017/3/14.
  */
 @Entity
 @Table(name = "permission_operation_relation", schema = "webapp", catalog = "")
 public class PermissionOperationRelation {
+    private Integer id;
+    private Integer permissionId;
+    private Integer operationId;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
     private Timestamp modifyTime;
     private Byte flag;
-    private Integer id;
-    private Permission permissionByPermissionId;
-    private Operation operationByOperationId;
+
+    @Id
+    @Column(name = "id")
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @Basic
-    @Column(name = "creata_user_id",insertable=false,updatable=false)
+    @Column(name = "permission_id")
+    public Integer getPermissionId() {
+        return permissionId;
+    }
+
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
+    }
+
+    @Basic
+    @Column(name = "operation_id")
+    public Integer getOperationId() {
+        return operationId;
+    }
+
+    public void setOperationId(Integer operationId) {
+        this.operationId = operationId;
+    }
+
+    @Basic
+    @Column(name = "creata_user_id")
     public Integer getCreataUserId() {
         return creataUserId;
     }
@@ -39,7 +69,7 @@ public class PermissionOperationRelation {
     }
 
     @Basic
-    @Column(name = "modify_user_id",insertable=false,updatable=false)
+    @Column(name = "modify_user_id")
     public Integer getModifyUserId() {
         return modifyUserId;
     }
@@ -68,17 +98,6 @@ public class PermissionOperationRelation {
         this.flag = flag;
     }
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,42 +105,26 @@ public class PermissionOperationRelation {
 
         PermissionOperationRelation that = (PermissionOperationRelation) o;
 
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (permissionId != null ? !permissionId.equals(that.permissionId) : that.permissionId != null) return false;
+        if (operationId != null ? !operationId.equals(that.operationId) : that.operationId != null) return false;
         if (creataUserId != null ? !creataUserId.equals(that.creataUserId) : that.creataUserId != null) return false;
         if (creataTime != null ? !creataTime.equals(that.creataTime) : that.creataTime != null) return false;
         if (modifyUserId != null ? !modifyUserId.equals(that.modifyUserId) : that.modifyUserId != null) return false;
         if (modifyTime != null ? !modifyTime.equals(that.modifyTime) : that.modifyTime != null) return false;
-        if (flag != null ? !flag.equals(that.flag) : that.flag != null) return false;
-        return id != null ? id.equals(that.id) : that.id == null;
+        return flag != null ? flag.equals(that.flag) : that.flag == null;
     }
 
     @Override
     public int hashCode() {
-        int result = creataUserId != null ? creataUserId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (permissionId != null ? permissionId.hashCode() : 0);
+        result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
+        result = 31 * result + (creataUserId != null ? creataUserId.hashCode() : 0);
         result = 31 * result + (creataTime != null ? creataTime.hashCode() : 0);
         result = 31 * result + (modifyUserId != null ? modifyUserId.hashCode() : 0);
         result = 31 * result + (modifyTime != null ? modifyTime.hashCode() : 0);
         result = 31 * result + (flag != null ? flag.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "permission_id", referencedColumnName = "permission_id", nullable = false)
-    public Permission getPermissionByPermissionId() {
-        return permissionByPermissionId;
-    }
-
-    public void setPermissionByPermissionId(Permission permissionByPermissionId) {
-        this.permissionByPermissionId = permissionByPermissionId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "operation_id", referencedColumnName = "operation_id")
-    public Operation getOperationByOperationId() {
-        return operationByOperationId;
-    }
-
-    public void setOperationByOperationId(Operation operationByOperationId) {
-        this.operationByOperationId = operationByOperationId;
     }
 }
