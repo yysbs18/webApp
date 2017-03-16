@@ -1,1 +1,5 @@
-menu
+<div>
+    <a ng-repeat="m in menuList" ui-sref="{{m.menuUrl}}">
+        {{m.menuName}}
+    </a>
+</div>

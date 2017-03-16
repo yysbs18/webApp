@@ -11,7 +11,7 @@
             debug: app.debug,
             events: true
         });
-        // $httpProvider.interceptors.push('sessionInjector');
+        $httpProvider.interceptors.push('sessionInjector');
         $httpProvider.defaults.timeout = 30000;
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
 
@@ -91,88 +91,36 @@
                     console.log(msg);
                 });
         }]);
-        webApp.factory("transformRequestAsFormPost", function () {
-            function transformRequest(data) {
-                return (xy.serializeData(data));
-            }
-
-            return (transformRequest);
-        });
-        webApp.factory('sessionInjector', ['$q', '$location', '$window', '$injector', 'transformRequestAsFormPost',
-            function ($q, $location, $window, $injector, transformRequestAsFormPost) {
-                var ERR_UNLOGIN = 10000,
-                    ERR_UNREG = -10000,
-                    ERR_PERMISSION_DENY = 10019,
-                    sessionInjector = {
-                        request: function (config) {
-                            if (null == config.url.match(/(\/com\/user\/login\/login.action|com-app\/page\/info\/info\.html)/i))
-                                config.headers['token'] = $window.localStorage.token;
-                            if (config.url.match(/.*\.(html|js)$/g)) {//.html和.js结尾的请求除外
-                                config.hideLoading = true;
-                            } else {
-                                if (!config.hideLoading) {
-                                    $injector.get('xyLoading').start();
-                                }
-                            }
-                            if (!config.uploadFile && config.data) {
-                                config.transformRequest = transformRequestAsFormPost;
-                                config.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=utf-8";
-                            }
-                            if (typeof config.timeout == 'undefined') {
-                                config.timeout = 60000;
-                            }
-                            return config;
-                        },
-                        requestError: function (rejection) {
-                            if (!rejection.hideLoading) {
-                                $injector.get('xyLoading').stop();
-                            }
-                            return $q.reject(rejection);
-                        },
-                        response: function (response) {
-                            if (!response.config.hideLoading) {
-                                $injector.get('xyLoading').stop();
-                            }
-                            if (response.data && response.data.constructor === Object) {
-                                var xyDialog = $injector.get('xyDialog'),
-                                    $state = $injector.get('$state');
-                                if (response.data.ljt_error_code === ERR_UNREG) {
-                                    xyDialog.toast(response.data.ljt_error_msg);
-                                    if (!$state.is('login.login')) {
-                                        $state.go('login.login', {fromUrl: window.encodeURIComponent(window.location.href)});
-                                    }
-                                    return $q.reject(response);
-                                } else if (response.data.ljt_error_code === ERR_UNLOGIN) {
-                                    xyDialog.toast(response.data.ljt_error_msg);
-                                    if (!$state.is('login.login')) {
-                                        $state.go('login.login', {fromUrl: window.encodeURIComponent(window.location.href)});
-                                    }
-                                    return $q.reject(response);
-                                } else if (response.data.ljt_error_code === ERR_PERMISSION_DENY) {
-                                    xyDialog.toast(response.data.ljt_error_msg);
-                                    if (!$state.is('login.login')) {
-                                        $state.go('login.login');
-                                    }
-                                    return $q.reject(response);
-                                } else if (response.data.ljt_error_code != 0 && !response.config.ignoreErrCode) {
-                                    xyDialog.toast(response.data.ljt_error_msg || '请求出错啦*_*');
-                                    return $q.reject(response);
-                                }
-                            }
-                            return response;
-                        },
-                        responseError: function (response) {
-                            if (!response.config || !response.config.hideLoading) {
-                                $injector.get('xyLoading').stop();
-                            }
-                            if (response.config && !response.config.ignoreNetwork) {
-                                $injector.get('xyDialog').toast('网络请求失败，请检查网络状况');
-                            }
-                            // $location.url("/errorInfo");
-                            return $q.reject(response);
-                        }
-                    };
-                return sessionInjector;
-            }]);
     }]);
+    webApp.factory("transformRequestAsFormPost", function () {
+        function transformRequest(data) {
+            return (app.serializeData(data));
+        }
+        return (transformRequest);
+    });
+    webApp.factory('sessionInjector', ['$q','transformRequestAsFormPost',
+        function ($q,transformRequestAsFormPost) {
+            var sessionInjector = {
+                request: function (config) {
+                    if (config.data) {
+                        config.transformRequest = transformRequestAsFormPost;
+                        config.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=utf-8";
+                    }
+                    if (typeof config.timeout == 'undefined') {
+                        config.timeout = 60000;
+                    }
+                    return config;
+                },
+                requestError: function (rejection) {
+                    return $q.reject(rejection);
+                },
+                response: function (response) {
+                    return response;
+                },
+                responseError: function (response) {
+                    return $q.reject(response);
+                }
+            };
+            return sessionInjector;
+        }]);
 }(window, window.angular, window.app));

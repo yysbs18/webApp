@@ -24,8 +24,8 @@ public class MenuRepositoryImpl extends GenericRepositoryImpl implements MenuRep
 
     @Override
     public List<Menu> findAll() {
-        List<Menu> menus = session_().createQuery("select m.menuId as menuId,m.menuName as menuName from Menu m").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
-//        List<Menu> menus=query_("from Menu m where m.flag>0").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+//        List<Menu> menus = session_().createQuery("select m.menuId as menuId,m.menuName as menuName from Menu m").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+        List<Menu> menus=query_("select m.menuUrl as menuUrl,m.menuName as menuName from Menu m where m.flag>0 order by m.sort").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
         return menus;
     }
 

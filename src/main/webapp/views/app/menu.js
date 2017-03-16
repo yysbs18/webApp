@@ -16,9 +16,8 @@
         $http({
             method: 'get',
             url: app.getUrl('menu/getMenus'),
-            params: {},
         }).then(function (res) {
-
+            $scope.menuList = res.data.data;
         }, function (rej) {
 
         });
