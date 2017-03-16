@@ -5,6 +5,8 @@ import net.imwork.amorgemini.repository.GenericRepositoryImpl;
 import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,8 +26,7 @@ public class MenuRepositoryImpl extends GenericRepositoryImpl implements MenuRep
 
     @Override
     public List<Menu> findAll() {
-//        List<Menu> menus = session_().createQuery("select m.menuId as menuId,m.menuName as menuName from Menu m").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
-        List<Menu> menus=query_("select m.menuUrl as menuUrl,m.menuName as menuName from Menu m where m.flag>0 order by m.sort").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+        List<Menu> menus=query_("select m.menuUrl as menuUrl,m.menuName as menuName,m.menuFid as menuFid,m.sort as sort,m.flag as flag from Menu m  order by m.sort").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
         return menus;
     }
 
@@ -41,6 +42,9 @@ public class MenuRepositoryImpl extends GenericRepositoryImpl implements MenuRep
 
     @Override
     public Integer saveOrUpdate(Menu _entity) {
+        _entity.setMenuId(1);
+        _entity.setModifyTime(new Timestamp(new Date().getTime()));
+        save_(_entity);
         return null;
     }
 

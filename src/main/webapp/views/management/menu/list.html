@@ -1,0 +1,62 @@
+<md-content class="md-padding">
+    <!--<md-input-container flex>
+        <label>搜索</label>
+        <input type="text"/>
+    </md-input-container>
+    <table class="table table-striped table-hover">
+        <thead class="text-center">
+        <tr>
+            <td>序号</td>
+            <td>菜单名称</td>
+            <td>菜单地址</td>
+            <td>父级菜单</td>
+            <td>排序</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="text-center" layout-align="center center">
+        <tr ng-repeat="m in menuList">
+            <td>{{$index}}</td>
+            <td>
+                <input type="text" ng-model="m.menuName" class="form-control" ng-show="m.edit"/>
+                <conten class="form-control-static" ng-if="!m.edit">{{m.menuName}}</conten>
+            </td>
+            <td>
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="m.menuUrl" placeholder="Address 2">
+                </md-input-container>
+            </td>
+            <td>{{m.menuFid}}</td>
+            <td>{{m.sort}}</td>
+            <td>
+                <button ng-click="m.edit = !m.edit" class="btn btn-default">修改</button>
+                <button ng-click="null" class="btn " ng-class="{'btn-danger':m.flag,'btn-success':!m.flag}">{{m.flag?'禁用':'启用'}}</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>-->
+    <mdt-table mdt-row="{
+                      data: nutritionList,
+                      'column-keys': [
+                          'name',
+                          'calories',
+                          'fat',
+                          'carbs',
+                          'protein',
+                          'sodium',
+                          'calcium',
+                          'iron'
+                      ]
+                      }">
+        <mdt-header-row>
+            <mdt-column align-rule="left">Dessert (100g serving)</mdt-column>
+            <mdt-column align-rule="right">Calories</mdt-column>
+            <mdt-column align-rule="right">Fat (g)</mdt-column>
+            <mdt-column align-rule="right">Carbs (g)</mdt-column>
+            <mdt-column align-rule="right">Protein (g)</mdt-column>
+            <mdt-column align-rule="right">Sodium (mg)</mdt-column>
+            <mdt-column align-rule="right">Calcium (%)</mdt-column>
+            <mdt-column align-rule="right">Iron (%)</mdt-column>
+        </mdt-header-row>
+    </mdt-table>
+</md-content>

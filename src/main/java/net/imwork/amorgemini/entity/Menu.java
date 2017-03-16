@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 public class Menu {
     private Integer menuId;
     private String menuUrl;
-    private Integer menuFid;
+    private String menuFid;
     private Integer creataUserId;
     private Timestamp creataTime;
     private Integer modifyUserId;
@@ -44,11 +44,11 @@ public class Menu {
 
     @Basic
     @Column(name = "menu_fid")
-    public Integer getMenuFid() {
+    public String getMenuFid() {
         return menuFid;
     }
 
-    public void setMenuFid(Integer menuFid) {
+    public void setMenuFid(String menuFid) {
         this.menuFid = menuFid;
     }
 

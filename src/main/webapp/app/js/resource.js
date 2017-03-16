@@ -2,16 +2,25 @@
     var dev = true
         , node_module = '../../node_modules/'
         , js = [
-        'angular/angular.js'
+         'md-data-table/jquery.js'
+        , 'md-data-table/lodash.min.js'
+        ,'angular/angular.js'
+        , 'angular/angular-sanitize.js'
         , 'angular/angular-animate.js'
         , 'angular/angular-aria.js'
         , 'angular/angular-messages.js'
-        , 'angular/ng-file-upload.js'
+        , 'angular/angular-mocks.js'
+        , 'angular-material/angular-material-icons.js'
         , 'angular-material/angular-material.js'
+        , 'md-data-table/md-data-table-templates.js'
+        , 'md-data-table/md-data-table.js'
         , 'angular-ui-router/release/angular-ui-router.js'
+        , 'angular/ng-file-upload.js'
         , 'angular/ocLazyLoad.js'
     ]
-        , css = ['angular-material/angular-material.css']
+        , css = ['angular-material/angular-material.css'
+        ,'md-data-table/md-data-table-style.css'
+    ]
         , jsTemplate = '<script src="_resource_"></script>'
         , cssTemplate = '<link rel="stylesheet" type="text/css" href="_resource_">'
         , resources = '';

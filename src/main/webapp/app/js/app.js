@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/2.
  */
 (function (window, angular, app, undefined) {
-    var webApp = window.webApp = angular.module('webApp', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngMessages', 'oc.lazyLoad',]);
+    var webApp = window.webApp = angular.module('webApp', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngMessages','mdDataTable', 'oc.lazyLoad']);
     webApp.config(['$httpProvider', '$controllerProvider', '$filterProvider', '$ocLazyLoadProvider', "$compileProvider", '$stateProvider', function ($httpProvider, $controllerProvider, $filterProvider, $ocLazyLoadProvider, $compileProvider, $stateProvider) {
         webApp.controllerRegister = $controllerProvider.register;
         webApp.filterRegister = $filterProvider.register;

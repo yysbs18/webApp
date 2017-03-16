@@ -48,6 +48,16 @@
             }
         }, [
             '../../views/management/management.js', '../../views/management/management.css'
+        ])._state('webApp.menuList', {
+            url: '/management/menu/list',
+            views: {
+                'content@': {
+                    controller: 'menuListController',
+                    templateUrl: '../../views/management/menu/list.html'
+                }
+            }
+        }, [
+            '../../views/management/menu/list.js', '../../views/management/menu/list.css'
         ]);
         $urlRouterProvider.otherwise('/webApp');
     }]);
