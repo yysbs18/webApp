@@ -3,28 +3,28 @@
  */
 (function (window, angular, app, webApp) {
     'use strict';
-    webApp.controllerRegister('menuListController', ['$scope', '$window', '$timeout', '$http', '$state', '$stateParams','$mdToast', function ($scope, $window, $timeout, $http, $state, $stateParams, $mdToast) {
+    webApp.controllerRegister('menuListController', ['$scope', '$mdToast', '$window', '$timeout', '$http', '$state', '$stateParams', function ($scope, $mdToast, $window, $timeout, $http, $state, $stateParams) {
         $scope.ss = '姐姐';
         $http({
             method: 'get',
             url: app.getUrl('menu/getMenus'),
         }).then(function (res) {
             $scope.menuList = res.data.data;
-        }, function (rej) {
-
         });
-        $scope.nutritionList = [
-            {
-                id: 601,
-                name: 'Frozen joghurt',
-                calories: 159,
-                fat: 6.0,
-                carbs: 24,
-                protein: 4.0,
-                sodium: 87,
-                calcium: '14%',
-                iron: '1%'
-            }
-        ];
+        $scope.saveRowCallback = function (row) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .content('Row changed to: ' + row)
+                    .hideDelay(3000)
+            );
+        };
+        $scope.changeCallback = function (m) {
+            var str = '菜单\"' + m.menuName + '\"已' + (m.flag ? '启用' : '禁用');
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(str)
+                    .hideDelay(3000)
+            );
+        };
     }]);
 }(window, window.angular, window.app, window.webApp));
